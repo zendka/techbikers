@@ -7,6 +7,7 @@ import ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 import Navigation from "../Navigation";
 import SignUpPage from "../SignUpPage";
+import SignInPage from "../SignInPage";
 
 class App extends React.Component {
   state = { user: null };
@@ -23,6 +24,7 @@ class App extends React.Component {
         <Navigation user={this.state.user} />
         <main>
           <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
+          <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
         </main>
       </BrowserRouter>
     );
