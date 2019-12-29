@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Navigation />
+        <Navigation user={this.state.user} />
         <main>
           <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
         </main>
