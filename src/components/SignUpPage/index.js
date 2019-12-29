@@ -1,5 +1,7 @@
 import React from "react";
+import { Form, Input, Button } from "semantic-ui-react";
 
+import "./style.css";
 import { withFirebase } from "../Firebase";
 
 export default class SignUpPage extends React.Component {
@@ -32,26 +34,27 @@ class SignUpFormBase extends React.Component {
 
   render() {
     return (
-      <form id="signup-form" onSubmit={this.onSubmit}>
-        <label htmlFor="signup-form-email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="signup-form-email"
-          value={this.state.email}
-          onChange={this.onChange}
-        />
-        <label htmlFor="signup-form-password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="signup-form-password"
-          value={this.state.password}
-          onChange={this.onChange}
-        />
+      <Form id="signup-form" onSubmit={this.onSubmit}>
+        <Form.Field>
+          <label>Email</label>
+          <Input
+            name="email"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <Input
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.onChange}
+          />
+        </Form.Field>
         {this.state.error && <div className="error">{this.state.error}</div>}
-        <button type="submit">Sign up</button>
-      </form>
+        <Button type="submit">Sign up</Button>
+      </Form>
     );
   }
 }
