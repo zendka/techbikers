@@ -1,8 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { Form, Input, Button } from "semantic-ui-react";
+import { Form, Input, Button, Message } from "semantic-ui-react";
 
-import "./style.css";
 import ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 
@@ -45,6 +44,7 @@ class SignUpFormBase extends React.Component {
         <Form.Field>
           <label>Email</label>
           <Input
+            type="email"
             name="email"
             value={this.state.email}
             onChange={this.onChange}
@@ -59,7 +59,7 @@ class SignUpFormBase extends React.Component {
             onChange={this.onChange}
           />
         </Form.Field>
-        {this.state.error && <div className="error">{this.state.error}</div>}
+        {this.state.error && <Message negative>{this.state.error}</Message>}
         <Button type="submit">Sign up</Button>
       </Form>
     );
