@@ -1,7 +1,9 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { Form, Input, Button } from "semantic-ui-react";
 
 import "./style.css";
+import ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 
 export default class SignUpPage extends React.Component {
@@ -15,8 +17,10 @@ export default class SignUpPage extends React.Component {
   }
 }
 
+const INITIAL_STATE = { email: "", password: "", error: null };
+
 class SignUpFormBase extends React.Component {
-  state = { email: "", password: "", error: null };
+  state = INITIAL_STATE;
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -26,7 +30,10 @@ class SignUpFormBase extends React.Component {
     e.preventDefault();
     this.props.firebase
       .doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(authUser => {})
+      .then(authUser => {
+        this.setState(INITIAL_STATE);
+        this.props.history.push(ROUTES.HOME);
+      })
       .catch(error => {
         this.setState({ error: error.message });
       });
@@ -59,4 +66,4 @@ class SignUpFormBase extends React.Component {
   }
 }
 
-const SignUpForm = withFirebase(SignUpFormBase);
+const SignUpForm = withFirebase(withRouter(SignUpFormBase));
