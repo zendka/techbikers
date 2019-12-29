@@ -21,4 +21,8 @@ export default class Firebase {
   doCreateUserWithEmailAndPassword(email, password) {
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
+
+  doSignOut() {
+    return this.auth.signOut();
+  }
 }

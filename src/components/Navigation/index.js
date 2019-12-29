@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
 import ROUTES from "../../constants/routes";
+import SignOutLink from "../SignOutLink";
 
 const Navigation = props =>
   props.user ? <NavigationAuth /> : <NavigationNonAuth />;
@@ -13,7 +14,7 @@ const NavigationAuth = () => (
       <Link to={ROUTES.HOME}>Home</Link>
     </Menu.Item>
     <Menu.Item>
-      <Link to={ROUTES.SIGNOUT}>Sign Out</Link>
+      <SignOutLink />
     </Menu.Item>
   </Menu>
 );
