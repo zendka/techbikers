@@ -14,6 +14,9 @@ const NavigationAuth = () => (
       <Link to={ROUTES.HOME}>Home</Link>
     </Menu.Item>
     <Menu.Item>
+      <Link to={ROUTES.UPCOMING_RIDES}>Upcoming Rides</Link>
+    </Menu.Item>
+    <Menu.Item>
       <SignOutLink />
     </Menu.Item>
   </Menu>
@@ -23,6 +26,9 @@ const NavigationNonAuth = () => (
   <Menu>
     <Menu.Item>
       <Link to={ROUTES.HOME}>Home</Link>
+    </Menu.Item>
+    <Menu.Item>
+      <Link to={ROUTES.UPCOMING_RIDES}>Upcoming Rides</Link>
     </Menu.Item>
     <Menu.Item>
       <Link to={ROUTES.SIGNUP}>Sign Up</Link>

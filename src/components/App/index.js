@@ -8,6 +8,7 @@ import { withFirebase } from "../Firebase";
 import Navigation from "../Navigation";
 import SignUpPage from "../SignUpPage";
 import SignInPage from "../SignInPage";
+import UpcomingRidesPage from "../UpcomingRidesPage";
 
 class App extends React.Component {
   state = { user: null };
@@ -25,6 +26,10 @@ class App extends React.Component {
         <main>
           <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
           <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
+          <Route
+            path={ROUTES.UPCOMING_RIDES}
+            component={UpcomingRidesPage}
+          ></Route>
         </main>
       </BrowserRouter>
     );
