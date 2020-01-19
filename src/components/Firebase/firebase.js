@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 
 const config = {
   apiKey: process.env.REACT_APP_FB_apiKey,
@@ -16,6 +17,7 @@ export default class Firebase {
     app.initializeApp(config);
 
     this.auth = app.auth();
+    this.db = app.database();
   }
 
   doCreateUserWithEmailAndPassword(email, password) {
@@ -29,4 +31,17 @@ export default class Firebase {
   doSignOut() {
     return this.auth.signOut();
   }
+
+  fetchRides = () =>
+    new Promise((resolve, reject) => {
+      this.db.ref("rides").on("value", snapshot => {
+        const rides = Object.values(snapshot.val());
+        rides.forEach(ride => {
+          ride.startDate = new Date(ride.startDate);
+          ride.endDate = new Date(ride.endDate);
+        });
+
+        resolve(rides);
+      });
+    });
 }
