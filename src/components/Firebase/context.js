@@ -6,6 +6,6 @@ export default FirebaseContext;
 
 export const withFirebase = Component => props => (
   <FirebaseContext.Consumer>
-    {firebase => <Component firebase={firebase} />}
+    {firebase => <Component firebase={firebase} {...props} />}
   </FirebaseContext.Consumer>
 );
