@@ -9,6 +9,7 @@ import Navigation from "../Navigation";
 import SignUpPage from "../SignUpPage";
 import SignInPage from "../SignInPage";
 import UpcomingRidesPage from "../UpcomingRidesPage";
+import RideDetailsPage from "../RideDetailsPage";
 
 class App extends React.Component {
   state = { user: null };
@@ -30,6 +31,7 @@ class App extends React.Component {
             path={ROUTES.UPCOMING_RIDES}
             component={UpcomingRidesPage}
           ></Route>
+          <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
         </main>
       </BrowserRouter>
     );
