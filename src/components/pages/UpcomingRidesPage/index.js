@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Item } from "semantic-ui-react";
 
-import ROUTES from "../../constants/routes";
-import { withFirebase } from "../Firebase";
+import ROUTES from "../../../constants/routes";
+import { withFirebase } from "../../Firebase";
 
 class UpcomingRidesPage extends React.Component {
   state = { rides: [], upcomingRides: [], pastRides: [] };

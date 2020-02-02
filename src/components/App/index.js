@@ -6,10 +6,10 @@ import "./style.css";
 import ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 import Navigation from "../Navigation";
-import SignUpPage from "../SignUpPage";
-import SignInPage from "../SignInPage";
-import UpcomingRidesPage from "../UpcomingRidesPage";
-import RideDetailsPage from "../RideDetailsPage";
+import SignUpPage from "../pages/SignUpPage";
+import SignInPage from "../pages/SignInPage";
+import UpcomingRidesPage from "../pages/UpcomingRidesPage";
+import RideDetailsPage from "../pages/RideDetailsPage";
 
 class App extends React.Component {
   state = { user: null };

@@ -2,15 +2,15 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Input, Button, Message } from "semantic-ui-react";
 
-import ROUTES from "../../constants/routes";
-import { withFirebase } from "../Firebase";
+import ROUTES from "../../../constants/routes";
+import { withFirebase } from "../../Firebase";
 
-export default class SignUpPage extends React.Component {
+export default class SignInPage extends React.Component {
   render() {
     return (
-      <div id="signup-page">
-        <h1>Sign Up</h1>
-        <SignUpForm />
+      <div id="signin-page">
+        <h1>Sign In</h1>
+        <SignInForm />
       </div>
     );
   }
@@ -18,7 +18,7 @@ export default class SignUpPage extends React.Component {
 
 const INITIAL_STATE = { email: "", password: "", error: null };
 
-class SignUpFormBase extends React.Component {
+class SignInFormBase extends React.Component {
   state = INITIAL_STATE;
 
   onChange = e => {
@@ -28,8 +28,8 @@ class SignUpFormBase extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(authUser => {
+      .doSignInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(response => {
         this.setState(INITIAL_STATE);
         this.props.history.push(ROUTES.HOME);
       })
@@ -40,7 +40,7 @@ class SignUpFormBase extends React.Component {
 
   render() {
     return (
-      <Form id="signup-form" onSubmit={this.onSubmit}>
+      <Form id="signin-form" onSubmit={this.onSubmit}>
         <Form.Field>
           <label>Email</label>
           <Input
@@ -60,10 +60,10 @@ class SignUpFormBase extends React.Component {
           />
         </Form.Field>
         {this.state.error && <Message negative>{this.state.error}</Message>}
-        <Button type="submit">Sign up</Button>
+        <Button type="submit">Sign in</Button>
       </Form>
     );
   }
 }
 
-const SignUpForm = withFirebase(withRouter(SignUpFormBase));
+const SignInForm = withFirebase(withRouter(SignInFormBase));
