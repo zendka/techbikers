@@ -6,6 +6,7 @@ import "./style.css";
 import ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 import Navigation from "../Navigation";
+import Footer from "../Footer";
 import HomePage from "../pages/HomePage";
 import SignUpPage from "../pages/SignUpPage";
 import SignInPage from "../pages/SignInPage";
@@ -35,6 +36,7 @@ class App extends React.Component {
           ></Route>
           <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
         </main>
+        <Footer />
       </BrowserRouter>
     );
   }
