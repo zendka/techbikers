@@ -1,8 +1,0 @@
-main {
-  margin: 1rem;
-}
-
-.ui.form input[type="email"],
-.ui.form input[type="password"] {
-  max-width: 250px;
-}

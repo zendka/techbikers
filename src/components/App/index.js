@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import "./style.css";
 import ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
 import Navigation from "../Navigation";
