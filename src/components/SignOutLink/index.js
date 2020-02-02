@@ -6,10 +6,11 @@ export class SignOutPage extends React.Component {
     e.preventDefault();
     this.props.firebase.doSignOut();
   };
+
   render() {
     return (
-      <a href="signout" onClick={this.onClick}>
-        Sign Out
+      <a href="signout" onClick={this.onClick} className={this.props.className}>
+        {this.props.children}
       </a>
     );
   }
