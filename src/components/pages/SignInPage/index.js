@@ -8,10 +8,10 @@ import { withFirebase } from "../../Firebase";
 export default class SignInPage extends React.Component {
   render() {
     return (
-      <div id="signin-page">
+      <main id="signin-page">
         <h1>Sign In</h1>
         <SignInForm />
-      </div>
+      </main>
     );
   }
 }

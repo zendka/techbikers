@@ -22,7 +22,7 @@ class RideDetailsPage extends React.Component {
 
     const { name, startDate, endDate, fullCost, chapter } = this.state.ride;
     return (
-      <div id="ride-details-page">
+      <main id="ride-details-page">
         <h1>{name}</h1>
         <time>
           {startDate.toLocaleDateString("en-GB", {
@@ -40,7 +40,7 @@ class RideDetailsPage extends React.Component {
         </time>
         <p>Part of chapter {chapter}</p>
         <p>Full cost: {fullCost}</p>
-      </div>
+      </main>
     );
   }
 }

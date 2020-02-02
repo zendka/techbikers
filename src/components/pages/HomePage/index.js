@@ -6,12 +6,12 @@ import "./style.css";
 export default class HomePage extends React.Component {
   render() {
     return (
-      <div id="home-page">
+      <main id="home-page">
         <Hero />
         <Mission />
         <Stats />
         <MailchimpForm />
-      </div>
+      </main>
     );
   }
 }

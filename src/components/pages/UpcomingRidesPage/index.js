@@ -26,13 +26,13 @@ class UpcomingRidesPage extends React.Component {
 
   render() {
     return (
-      <div id="upcoming-rides-page">
+      <main id="upcoming-rides-page">
         <h1>Upcoming Rides</h1>
         <RidesList rides={this.state.upcomingRides} />
 
         <h2>Past Rides</h2>
         <RidesList rides={this.state.pastRides} />
-      </div>
+      </main>
     );
   }
 }

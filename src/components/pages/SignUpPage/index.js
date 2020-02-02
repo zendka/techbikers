@@ -8,10 +8,10 @@ import { withFirebase } from "../../Firebase";
 export default class SignUpPage extends React.Component {
   render() {
     return (
-      <div id="signup-page">
+      <main id="signup-page">
         <h1>Sign Up</h1>
         <SignUpForm />
-      </div>
+      </main>
     );
   }
 }

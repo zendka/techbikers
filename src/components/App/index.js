@@ -26,19 +26,17 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Navigation user={this.state.user} />
-        <main>
-          <Switch>
-            <Route exact path={ROUTES.HOME} component={HomePage}></Route>
-            <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
-            <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
-            <Route
-              path={ROUTES.UPCOMING_RIDES}
-              component={UpcomingRidesPage}
-            ></Route>
-            <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
-            <Route component={PageNotFound} />
-          </Switch>
-        </main>
+        <Switch>
+          <Route exact path={ROUTES.HOME} component={HomePage}></Route>
+          <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
+          <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
+          <Route
+            path={ROUTES.UPCOMING_RIDES}
+            component={UpcomingRidesPage}
+          ></Route>
+          <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
+          <Route component={PageNotFound} />
+        </Switch>
         <Footer />
       </BrowserRouter>
     );

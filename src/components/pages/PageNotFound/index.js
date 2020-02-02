@@ -3,9 +3,9 @@ import React from "react";
 import "./style.css";
 
 const PageNotFound = () => (
-  <div id="page-not-found">
+  <main id="page-not-found">
     <h1>Page not found</h1>
-  </div>
+  </main>
 );
 
 export default PageNotFound;
