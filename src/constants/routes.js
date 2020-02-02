@@ -3,7 +3,8 @@ const ROUTES = {
   SIGNUP: "/signup",
   SIGNIN: "/signin",
   UPCOMING_RIDES: "/upcoming-rides",
-  RIDES: "/rides/:rideId"
+  RIDES: "/rides/:rideId",
+  DONATE: "/donate"
 };
 
 export default ROUTES;
