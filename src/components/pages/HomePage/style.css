@@ -1,0 +1,55 @@
+#home-page {
+  text-align: center;
+}
+
+#home-page > section {
+  margin-top: 3rem;
+}
+
+#home-page h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: lighter;
+}
+
+#hero {
+  background-image: url("/static/img/background.jpg");
+  background-size: cover;
+  padding: 5rem 0;
+
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 0px 0px 2px black;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#hero b {
+  display: block;
+  font-size: 8rem;
+  line-height: 8rem;
+}
+
+#stats p {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#stats b {
+  display: block;
+  font-size: 4rem;
+  line-height: 4rem;
+}
+
+#mailchimp {
+  background: rgb(68, 148, 199);
+  padding: 3rem;
+  margin-top: 4rem;
+  border-radius: 10px;
+  color: white;
+}
+
+#mailchimp input {
+  margin: 0 auto;
+}
