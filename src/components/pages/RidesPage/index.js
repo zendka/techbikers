@@ -5,7 +5,7 @@ import { Item } from "semantic-ui-react";
 import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
 
-class UpcomingRidesPage extends React.Component {
+class RidesPage extends React.Component {
   state = { rides: [], upcomingRides: [], pastRides: [] };
 
   componentDidMount() {
@@ -71,4 +71,4 @@ class RidesList extends React.Component {
   }
 }
 
-export default withFirebase(UpcomingRidesPage);
+export default withFirebase(RidesPage);

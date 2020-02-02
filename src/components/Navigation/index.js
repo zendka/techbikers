@@ -17,7 +17,7 @@ const Navigation = props => (
       TechBikers
     </Menu.Item>
     <Menu.Item as={Link} to={ROUTES.UPCOMING_RIDES}>
-      Upcoming Rides
+      Rides
     </Menu.Item>
     <Menu.Item as={Link} to={ROUTES.ABOUT}>
       About

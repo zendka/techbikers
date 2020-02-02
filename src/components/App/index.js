@@ -10,7 +10,7 @@ import AboutPage from "../pages/AboutPage";
 import CharityPage from "../pages/CharityPage";
 import SignUpPage from "../pages/SignUpPage";
 import SignInPage from "../pages/SignInPage";
-import UpcomingRidesPage from "../pages/UpcomingRidesPage";
+import RidesPage from "../pages/RidesPage";
 import RideDetailsPage from "../pages/RideDetailsPage";
 import PageNotFound from "../pages/PageNotFound";
 
@@ -29,14 +29,12 @@ class App extends React.Component {
         <Navigation user={this.state.user} />
         <Switch>
           <Route exact path={ROUTES.HOME} component={HomePage}></Route>
+          <Route path={ROUTES.UPCOMING_RIDES} component={RidesPage}></Route>
           <Route path={ROUTES.ABOUT} component={AboutPage}></Route>
           <Route path={ROUTES.CHARITY} component={CharityPage}></Route>
-          <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
           <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
-          <Route
-            path={ROUTES.UPCOMING_RIDES}
-            component={UpcomingRidesPage}
-          ></Route>
+
+          <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
           <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
           <Route component={PageNotFound} />
         </Switch>
