@@ -22,6 +22,9 @@ const Navigation = props => (
     <Menu.Item as={Link} to={ROUTES.ABOUT}>
       About
     </Menu.Item>
+    <Menu.Item as={Link} to={ROUTES.CHARITY}>
+      Charity
+    </Menu.Item>
     {props.user ? (
       <Menu.Item as={SignOutLink}>Sign Out</Menu.Item>
     ) : (
