@@ -25,6 +25,9 @@ const Navigation = props => (
     <Menu.Item as={Link} to={ROUTES.CHARITY}>
       Charity
     </Menu.Item>
+    <Menu.Item href="https://medium.com/@techbikers" target="_blank">
+      Blog
+    </Menu.Item>
     {props.user ? (
       <Menu.Item as={SignOutLink}>Sign Out</Menu.Item>
     ) : (
