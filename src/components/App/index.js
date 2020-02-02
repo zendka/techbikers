@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./style.css";
 import ROUTES from "../../constants/routes";
@@ -11,6 +11,7 @@ import SignUpPage from "../pages/SignUpPage";
 import SignInPage from "../pages/SignInPage";
 import UpcomingRidesPage from "../pages/UpcomingRidesPage";
 import RideDetailsPage from "../pages/RideDetailsPage";
+import PageNotFound from "../pages/PageNotFound";
 
 class App extends React.Component {
   state = { user: null };
@@ -26,14 +27,17 @@ class App extends React.Component {
       <BrowserRouter>
         <Navigation user={this.state.user} />
         <main>
-          <Route exact path={ROUTES.HOME} component={HomePage}></Route>
-          <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
-          <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
-          <Route
-            path={ROUTES.UPCOMING_RIDES}
-            component={UpcomingRidesPage}
-          ></Route>
-          <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
+          <Switch>
+            <Route exact path={ROUTES.HOME} component={HomePage}></Route>
+            <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
+            <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
+            <Route
+              path={ROUTES.UPCOMING_RIDES}
+              component={UpcomingRidesPage}
+            ></Route>
+            <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
+            <Route component={PageNotFound} />
+          </Switch>
         </main>
         <Footer />
       </BrowserRouter>
