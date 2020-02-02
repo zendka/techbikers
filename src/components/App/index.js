@@ -6,6 +6,7 @@ import { withFirebase } from "../Firebase";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import HomePage from "../pages/HomePage";
+import AboutPage from "../pages/AboutPage";
 import SignUpPage from "../pages/SignUpPage";
 import SignInPage from "../pages/SignInPage";
 import UpcomingRidesPage from "../pages/UpcomingRidesPage";
@@ -27,6 +28,7 @@ class App extends React.Component {
         <Navigation user={this.state.user} />
         <Switch>
           <Route exact path={ROUTES.HOME} component={HomePage}></Route>
+          <Route path={ROUTES.ABOUT} component={AboutPage}></Route>
           <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
           <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
           <Route

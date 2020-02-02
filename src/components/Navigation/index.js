@@ -19,6 +19,9 @@ const Navigation = props => (
     <Menu.Item as={Link} to={ROUTES.UPCOMING_RIDES}>
       Upcoming Rides
     </Menu.Item>
+    <Menu.Item as={Link} to={ROUTES.ABOUT}>
+      About
+    </Menu.Item>
     {props.user ? (
       <Menu.Item as={SignOutLink}>Sign Out</Menu.Item>
     ) : (
