@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form } from "semantic-ui-react";
 
 import "./style.css";
+import { setDocumentTitle } from "../../../helpers";
 
-export default class HomePage extends React.Component {
-  render() {
-    return (
-      <main id="home-page">
-        <Hero />
-        <Mission />
-        <Stats />
-        <MailchimpForm />
-      </main>
-    );
-  }
-}
+const HomePage = () => {
+  useEffect(setDocumentTitle());
+
+  return (
+    <main id="home-page">
+      <Hero />
+      <Mission />
+      <Stats />
+      <MailchimpForm />
+    </main>
+  );
+};
 
 // @todo optimise image size! and optimise for @media mobile
 const Hero = () => (
@@ -78,3 +79,5 @@ const MailchimpForm = () => (
     </Form>
   </section>
 );
+
+export default HomePage;

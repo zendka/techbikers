@@ -1,5 +1,7 @@
 import React from "react";
+
 import { withFirebase } from "../../Firebase";
+import { setDocumentTitle } from "../../../helpers";
 
 class RideDetailsPage extends React.Component {
   state = { ride: null };
@@ -9,6 +11,12 @@ class RideDetailsPage extends React.Component {
 
     this.props.firebase.fetchRide(rideId).then(this.updateRide);
     // TODO handle reject
+
+    setDocumentTitle(this.state.ride ? this.state.ride.name : null)();
+  }
+
+  componentDidUpdate() {
+    setDocumentTitle(this.state.ride ? this.state.ride.name : null)();
   }
 
   updateRide = ride => {

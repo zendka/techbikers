@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Input, Button, Message } from "semantic-ui-react";
 
 import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
+import { setDocumentTitle } from "../../../helpers";
 
-export default class SignUpPage extends React.Component {
-  render() {
-    return (
-      <main id="signup-page">
-        <h1>Sign Up</h1>
-        <SignUpForm />
-      </main>
-    );
-  }
-}
+const SignUpPage = () => {
+  useEffect(setDocumentTitle("Sign Up"));
+
+  return (
+    <main id="signup-page">
+      <h1>Sign Up</h1>
+      <SignUpForm />
+    </main>
+  );
+};
 
 const INITIAL_STATE = { email: "", password: "", error: null };
 
@@ -67,3 +68,5 @@ class SignUpFormBase extends React.Component {
 }
 
 const SignUpForm = withFirebase(withRouter(SignUpFormBase));
+
+export default SignUpPage;

@@ -5,12 +5,19 @@ import { Card } from "semantic-ui-react";
 import "./style.css";
 import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
+import { setDocumentTitle } from "../../../helpers";
 
 class RidesPage extends React.Component {
   state = { rides: [], upcomingRides: [], pastRides: [] };
 
   componentDidMount() {
     this.props.firebase.fetchRides().then(this.updateRides);
+
+    setDocumentTitle("Rides")();
+  }
+
+  componentDidUpdate() {
+    setDocumentTitle("Rides")();
   }
 
   updateRides = rides => {
