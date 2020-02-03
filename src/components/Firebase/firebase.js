@@ -36,6 +36,11 @@ export default class Firebase {
     new Promise((resolve, reject) => {
       this.db.ref("rides").on("value", snapshot => {
         const rides = Object.values(snapshot.val());
+        if (!rides) {
+          reject();
+          return;
+        }
+
         rides.forEach(ride => {
           ride.startDate = new Date(ride.startDate);
           ride.endDate = new Date(ride.endDate);
@@ -49,7 +54,11 @@ export default class Firebase {
     return new Promise((resolve, reject) => {
       this.db.ref("rides/id_" + rideId).on("value", snapshot => {
         const ride = snapshot.val();
-        // TODO handle reject
+        if (!ride) {
+          reject();
+          return;
+        }
+
         ride.startDate = new Date(ride.startDate);
         ride.endDate = new Date(ride.endDate);
 

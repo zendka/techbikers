@@ -2,15 +2,23 @@ import React from "react";
 
 import { withFirebase } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
+import PageLoader from "../../PageLoader";
+import PageNotFound from "../PageNotFound";
 
 class RideDetailsPage extends React.Component {
-  state = { ride: null };
+  state = { ride: null, loading: true, loadedSuccessfully: null };
 
   componentDidMount() {
     const rideId = this.props.match.params.rideId;
 
-    this.props.firebase.fetchRide(rideId).then(this.updateRide);
-    // TODO handle reject
+    this.props.firebase
+      .fetchRide(rideId)
+      .then(ride =>
+        this.setState({ ride, loading: false, loadedSuccessfully: true })
+      )
+      .catch(() =>
+        this.setState({ loading: false, loadedSuccessfully: false })
+      );
 
     setDocumentTitle(this.state.ride ? this.state.ride.name : null)();
   }
@@ -19,13 +27,11 @@ class RideDetailsPage extends React.Component {
     setDocumentTitle(this.state.ride ? this.state.ride.name : null)();
   }
 
-  updateRide = ride => {
-    this.setState({ ride });
-  };
-
   render() {
-    if (!this.state.ride) {
-      return null;
+    if (this.state.loading) {
+      return <PageLoader />;
+    } else if (!this.state.loadedSuccessfully) {
+      return <PageNotFound />;
     }
 
     const { name, startDate, endDate, fullCost, chapter } = this.state.ride;

@@ -6,12 +6,25 @@ import "./style.css";
 import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
+import PageLoader from "../../PageLoader";
+import PageNotFound from "../PageNotFound";
 
 class RidesPage extends React.Component {
-  state = { rides: [], upcomingRides: [], pastRides: [] };
+  state = {
+    rides: [],
+    upcomingRides: [],
+    pastRides: [],
+    loading: true,
+    loadedSuccessfully: null
+  };
 
   componentDidMount() {
-    this.props.firebase.fetchRides().then(this.updateRides);
+    this.props.firebase
+      .fetchRides()
+      .then(this.updateRides)
+      .catch(() =>
+        this.setState({ loading: false, loadedSuccessfully: false })
+      );
 
     setDocumentTitle("Rides")();
   }
@@ -29,10 +42,22 @@ class RidesPage extends React.Component {
       .filter(ride => ride.startDate <= now)
       .sort((r1, r2) => r2.endDate - r1.endDate); // sort by closest to the present first
 
-    this.setState({ rides, upcomingRides, pastRides });
+    this.setState({
+      rides,
+      upcomingRides,
+      pastRides,
+      loading: false,
+      loadedSuccessfully: true
+    });
   };
 
   render() {
+    if (this.state.loading) {
+      return <PageLoader />;
+    } else if (!this.state.loadedSuccessfully) {
+      return <PageNotFound />;
+    }
+
     return (
       <main id="rides-page">
         <h1>Upcoming & Current Rides</h1>
