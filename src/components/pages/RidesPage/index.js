@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Item } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 
+import "./style.css";
 import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
 
@@ -26,8 +27,8 @@ class RidesPage extends React.Component {
 
   render() {
     return (
-      <main id="upcoming-rides-page">
-        <h1>Upcoming Rides</h1>
+      <main id="rides-page">
+        <h1>Upcoming & Current Rides</h1>
         <RidesList rides={this.state.upcomingRides} />
 
         <h2>Past Rides</h2>
@@ -40,14 +41,17 @@ class RidesPage extends React.Component {
 class RidesList extends React.Component {
   render() {
     return (
-      <Item.Group>
+      <Card.Group>
         {this.props.rides.map(ride => (
-          <Item key={ride.id}>
-            <Item.Content>
-              <Item.Header as={Link} to={ROUTES.RIDES.replace(/:\w+/, ride.id)}>
-                {ride.name}
-              </Item.Header>
-              <Item.Meta>
+          <Card
+            fluid
+            key={ride.id}
+            as={Link}
+            to={ROUTES.RIDES.replace(/:\w+/, ride.id)}
+          >
+            <Card.Content>
+              <Card.Header>{ride.name}</Card.Header>
+              <Card.Meta>
                 <time>
                   {ride.startDate.toLocaleDateString("en-GB", {
                     day: "numeric",
@@ -62,11 +66,11 @@ class RidesList extends React.Component {
                     year: "numeric"
                   })}
                 </time>
-              </Item.Meta>
-            </Item.Content>
-          </Item>
+              </Card.Meta>
+            </Card.Content>
+          </Card>
         ))}
-      </Item.Group>
+      </Card.Group>
     );
   }
 }

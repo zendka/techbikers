@@ -1,0 +1,8 @@
+#rides-page {
+  text-align: center;
+}
+
+#rides-page .cards {
+  max-width: 400px;
+  margin: 0 auto;
+}
