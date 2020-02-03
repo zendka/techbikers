@@ -1,9 +1,14 @@
 #home-page {
+  margin-top: 0;
   text-align: center;
 }
 
 #home-page > section {
   margin-top: 3rem;
+}
+
+#home-page #hero {
+  margin: 0 -1rem 0;
 }
 
 #home-page h2 {
@@ -16,9 +21,12 @@
   background-image: url("/static/img/background.jpg");
   background-size: cover;
   padding: 5rem 0;
+}
 
+#hero p {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
+  line-height: 3rem;
   color: white;
   text-shadow: 0px 0px 2px black;
   text-transform: uppercase;
@@ -29,6 +37,11 @@
   display: block;
   font-size: 8rem;
   line-height: 8rem;
+}
+
+#hero b:last-child {
+  font-size: 10rem;
+  line-height: 9rem;
 }
 
 #stats p {
