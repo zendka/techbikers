@@ -34,7 +34,7 @@ export default class Firebase {
 
   fetchRides = () =>
     new Promise((resolve, reject) => {
-      this.db.ref("rides").on("value", snapshot => {
+      this.db.ref("rides").once("value", snapshot => {
         const rides = Object.values(snapshot.val());
         if (!rides) {
           reject();
@@ -52,7 +52,7 @@ export default class Firebase {
 
   fetchRide(rideId) {
     return new Promise((resolve, reject) => {
-      this.db.ref("rides/id_" + rideId).on("value", snapshot => {
+      this.db.ref("rides/id_" + rideId).once("value", snapshot => {
         const ride = snapshot.val();
         if (!ride) {
           reject();
