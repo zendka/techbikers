@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { setDocumentTitle } from "../../../helpers";
+import YouTubeVideo from "../../YouTubeVideo";
 
 const AboutPage = () => {
   useEffect(setDocumentTitle("About"));
@@ -52,14 +53,7 @@ const AboutPage = () => {
           2013 ride
         </p>
 
-        <iframe
-          title="about"
-          width="560"
-          height="315"
-          src="//www.youtube.com/embed/W-0JHYkoJUI?rel=0"
-          frameBorder="0"
-          allowFullScreen
-        />
+        <YouTubeVideo id="W-0JHYkoJUI" />
       </article>
     </main>
   );

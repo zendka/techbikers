@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { setDocumentTitle } from "../../../helpers";
+import YouTubeVideo from "../../YouTubeVideo";
 
 const CharityPage = () => {
   useEffect(setDocumentTitle("Charity"));
@@ -33,16 +34,7 @@ const CharityPage = () => {
           anticipate reaching 15 million children.
         </p>
 
-        <p>
-          <iframe
-            title="charity"
-            width="480"
-            height="360"
-            src="//www.youtube.com/embed/9yMEIqyR3E8?rel=0"
-            frameBorder="0"
-            allowFullScreen
-          />
-        </p>
+        <YouTubeVideo id="9yMEIqyR3E8" />
 
         <blockquote>
           <p>
