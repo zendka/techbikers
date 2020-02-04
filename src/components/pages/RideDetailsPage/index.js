@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import { withFirebase } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
@@ -9,7 +10,7 @@ class RideDetailsPage extends React.Component {
   state = { ride: null, loading: true, loadedSuccessfully: null };
 
   componentDidMount() {
-    const rideId = this.props.match.params.rideId;
+    const { rideId } = this.props.match.params;
 
     this.props.firebase
       .fetchRide(rideId)
@@ -59,4 +60,4 @@ class RideDetailsPage extends React.Component {
   }
 }
 
-export default withFirebase(RideDetailsPage);
+export default withRouter(withFirebase(RideDetailsPage));

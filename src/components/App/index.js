@@ -28,15 +28,31 @@ class App extends React.PureComponent {
       <BrowserRouter>
         <Navigation user={this.state.user} />
         <Switch>
-          <Route exact path={ROUTES.HOME} component={HomePage}></Route>
-          <Route path={ROUTES.UPCOMING_RIDES} component={RidesPage}></Route>
-          <Route path={ROUTES.ABOUT} component={AboutPage}></Route>
-          <Route path={ROUTES.CHARITY} component={CharityPage}></Route>
-          <Route path={ROUTES.SIGNIN} component={SignInPage}></Route>
+          <Route exact path={ROUTES.HOME}>
+            <HomePage />
+          </Route>
+          <Route path={ROUTES.UPCOMING_RIDES}>
+            <RidesPage />
+          </Route>
+          <Route path={ROUTES.ABOUT}>
+            <AboutPage />
+          </Route>
+          <Route path={ROUTES.CHARITY}>
+            <CharityPage />
+          </Route>
+          <Route path={ROUTES.SIGNIN}>
+            <SignInPage />
+          </Route>
 
-          <Route path={ROUTES.SIGNUP} component={SignUpPage}></Route>
-          <Route path={ROUTES.RIDES} component={RideDetailsPage}></Route>
-          <Route component={PageNotFound} />
+          <Route path={ROUTES.SIGNUP}>
+            <SignUpPage />
+          </Route>
+          <Route path={ROUTES.RIDES}>
+            <RideDetailsPage />
+          </Route>
+          <Route>
+            <PageNotFound />
+          </Route>
         </Switch>
         <Footer />
       </BrowserRouter>
