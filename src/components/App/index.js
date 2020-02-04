@@ -14,7 +14,7 @@ import RidesPage from "../pages/RidesPage";
 import RideDetailsPage from "../pages/RideDetailsPage";
 import PageNotFound from "../pages/PageNotFound";
 
-class App extends React.Component {
+class App extends React.PureComponent {
   state = { user: null };
 
   componentDidMount() {

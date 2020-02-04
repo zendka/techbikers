@@ -9,7 +9,7 @@ import { setDocumentTitle } from "../../../helpers";
 import PageLoader from "../../PageLoader";
 import PageNotFound from "../PageNotFound";
 
-class RidesPage extends React.Component {
+class RidesPage extends React.PureComponent {
   state = {
     rides: [],
     upcomingRides: [],

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Input, Button, Message } from "semantic-ui-react";
 
@@ -6,7 +6,7 @@ import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
 
-const SignUpPage = () => {
+const SignUpPage = memo(() => {
   useEffect(setDocumentTitle("Sign Up"));
 
   return (
@@ -15,11 +15,11 @@ const SignUpPage = () => {
       <SignUpForm />
     </main>
   );
-};
+});
 
 const INITIAL_STATE = { email: "", password: "", error: null };
 
-class SignUpFormBase extends React.Component {
+class SignUpFormBase extends React.PureComponent {
   state = INITIAL_STATE;
 
   onChange = e => {

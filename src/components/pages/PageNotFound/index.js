@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 
 import "./style.css";
 import { setDocumentTitle } from "../../../helpers";
 
-const PageNotFound = () => {
+const PageNotFound = memo(() => {
   useEffect(setDocumentTitle("Page Not Found"));
 
   return (
@@ -11,6 +11,6 @@ const PageNotFound = () => {
       <h1>Page not found</h1>
     </main>
   );
-};
+});
 
 export default PageNotFound;

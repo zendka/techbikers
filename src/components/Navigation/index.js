@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Button, Icon } from "semantic-ui-react";
 
@@ -6,7 +6,7 @@ import "./style.css";
 import ROUTES from "../../constants/routes";
 import SignOutLink from "../SignOutLink";
 
-const Navigation = props => (
+const Navigation = memo(props => (
   <Menu borderless as="nav" id="main-nav">
     <Menu.Item>
       <Link to={ROUTES.HOME}>
@@ -43,6 +43,6 @@ const Navigation = props => (
       </Menu.Item>
     </Menu>
   </Menu>
-);
+));
 
 export default Navigation;

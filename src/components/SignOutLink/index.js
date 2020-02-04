@@ -1,7 +1,7 @@
 import React from "react";
 import { withFirebase } from "../Firebase";
 
-export class SignOutPage extends React.Component {
+export class SignOutPage extends React.PureComponent {
   onClick = e => {
     e.preventDefault();
     this.props.firebase.doSignOut();

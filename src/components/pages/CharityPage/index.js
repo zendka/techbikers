@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 
 import { setDocumentTitle } from "../../../helpers";
 import YouTubeVideo from "../../YouTubeVideo";
 
-const CharityPage = () => {
+const CharityPage = memo(() => {
   useEffect(setDocumentTitle("Charity"));
 
   return (
@@ -47,6 +47,6 @@ const CharityPage = () => {
       </article>
     </main>
   );
-};
+});
 
 export default CharityPage;

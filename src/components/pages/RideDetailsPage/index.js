@@ -5,7 +5,7 @@ import { setDocumentTitle } from "../../../helpers";
 import PageLoader from "../../PageLoader";
 import PageNotFound from "../PageNotFound";
 
-class RideDetailsPage extends React.Component {
+class RideDetailsPage extends React.PureComponent {
   state = { ride: null, loading: true, loadedSuccessfully: null };
 
   componentDidMount() {

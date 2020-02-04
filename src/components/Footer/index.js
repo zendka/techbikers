@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 
 import "./style.css";
 
-export default function Footer(props) {
+export default memo(function(props) {
   return (
     <footer id="footer">
       <div className="content">
@@ -36,4 +36,4 @@ export default function Footer(props) {
       </div>
     </footer>
   );
-}
+});

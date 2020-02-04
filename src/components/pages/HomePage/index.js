@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { Form } from "semantic-ui-react";
 
 import "./style.css";
 import { setDocumentTitle } from "../../../helpers";
 
-const HomePage = () => {
+const HomePage = memo(() => {
   useEffect(setDocumentTitle());
 
   return (
@@ -15,18 +15,18 @@ const HomePage = () => {
       <MailchimpForm />
     </main>
   );
-};
+});
 
 // @todo optimise image size! and optimise for @media mobile
-const Hero = () => (
+const Hero = memo(() => (
   <section id="hero">
     <p>
       <b>Drop</b>your laptop & get on your<b>bike</b>
     </p>
   </section>
-);
+));
 
-const Mission = () => (
+const Mission = memo(() => (
   <section id="mission">
     <h2>Our Mission</h2>
 
@@ -38,9 +38,9 @@ const Mission = () => (
       for this fantastic charity.
     </p>
   </section>
-);
+));
 
-const Stats = () => (
+const Stats = memo(() => (
   <section id="stats">
     <h2>Stats to Date</h2>
 
@@ -54,9 +54,9 @@ const Stats = () => (
       <b>1600km</b> ridden
     </p>
   </section>
-);
+));
 
-const MailchimpForm = () => (
+const MailchimpForm = memo(() => (
   <section id="mailchimp">
     <h2>Learn more about our plans for 2020!</h2>
 
@@ -78,6 +78,6 @@ const MailchimpForm = () => (
       </Form.Button>
     </Form>
   </section>
-);
+));
 
 export default HomePage;
