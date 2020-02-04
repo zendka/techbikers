@@ -41,7 +41,11 @@ class SignInFormBase extends React.PureComponent {
 
   render() {
     return (
-      <Form id="signin-form" onSubmit={this.onSubmit}>
+      <Form
+        id="signin-form"
+        onSubmit={this.onSubmit}
+        style={{ maxWidth: "250px", margin: "0 auto" }}
+      >
         <Form.Field>
           <label>Email</label>
           <Input
