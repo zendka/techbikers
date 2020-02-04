@@ -35,20 +35,16 @@ class RidesPage extends React.PureComponent {
 
   updateRides = rides => {
     const now = new Date();
-    const upcomingRides = rides
+
+    this.upcomingRides = rides
       .filter(ride => ride.startDate > now)
       .sort((r1, r2) => r1.endDate - r2.endDate); // sort by closest to the present first
-    const pastRides = rides
+
+    this.pastRides = rides
       .filter(ride => ride.startDate <= now)
       .sort((r1, r2) => r2.endDate - r1.endDate); // sort by closest to the present first
 
-    this.setState({
-      rides,
-      upcomingRides,
-      pastRides,
-      loading: false,
-      loadedSuccessfully: true
-    });
+    this.setState({ loading: false, loadedSuccessfully: true, rides });
   };
 
   render() {
@@ -61,10 +57,10 @@ class RidesPage extends React.PureComponent {
     return (
       <main id="rides-page">
         <h1>Upcoming & Current Rides</h1>
-        <RidesList rides={this.state.upcomingRides} />
+        <RidesList rides={this.upcomingRides} />
 
         <h2>Past Rides</h2>
-        <RidesList rides={this.state.pastRides} />
+        <RidesList rides={this.pastRides} />
       </main>
     );
   }
