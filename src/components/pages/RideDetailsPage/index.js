@@ -5,7 +5,7 @@ import { setDocumentTitle } from "../../../helpers";
 import PageLoader from "../../PageLoader";
 import PageNotFound from "../PageNotFound";
 
-class RideDetailsPage extends React.PureComponent {
+class RideDetailsPage extends React.Component {
   state = { ride: null, loading: true, loadedSuccessfully: null };
 
   componentDidMount() {
@@ -13,18 +13,18 @@ class RideDetailsPage extends React.PureComponent {
 
     this.props.firebase
       .fetchRide(rideId)
-      .then(ride =>
-        this.setState({ ride, loading: false, loadedSuccessfully: true })
-      )
+      .then(ride => {
+        this.setState({ loading: false, loadedSuccessfully: true, ride });
+      })
       .catch(() =>
         this.setState({ loading: false, loadedSuccessfully: false })
       );
 
-    setDocumentTitle(this.state.ride ? this.state.ride.name : null)();
+    setDocumentTitle(this.state.ride?.name)();
   }
 
   componentDidUpdate() {
-    setDocumentTitle(this.state.ride ? this.state.ride.name : null)();
+    setDocumentTitle(this.state.ride?.name)();
   }
 
   render() {
