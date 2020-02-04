@@ -1,7 +1,7 @@
+/* Override font size */
 html {
   font-size: 17px;
 }
-
 body {
   font-size: 1rem;
 }
@@ -23,11 +23,13 @@ body,
   flex-grow: 1;
 }
 
+/* Page title */
 h1:first-child {
   text-align: center;
   margin: 1.5rem auto 3rem;
 }
 
+/* Override Semantic UI */
 .ui.form input[type="email"],
 .ui.form input[type="password"] {
   max-width: 250px;
