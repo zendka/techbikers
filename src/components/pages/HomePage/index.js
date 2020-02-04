@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Container } from "semantic-ui-react";
 
 import "./style.css";
 import { setDocumentTitle } from "../../../helpers";
@@ -8,12 +8,12 @@ const HomePage = memo(() => {
   useEffect(setDocumentTitle());
 
   return (
-    <main id="home-page">
+    <Container as="main" id="home-page">
       <Hero />
       <Mission />
       <Stats />
       <MailchimpForm />
-    </main>
+    </Container>
   );
 });
 

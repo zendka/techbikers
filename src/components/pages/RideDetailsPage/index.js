@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
 import { withFirebase } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
@@ -37,7 +38,7 @@ class RideDetailsPage extends React.Component {
 
     const { name, startDate, endDate, fullCost, chapter } = this.state.ride;
     return (
-      <main id="ride-details-page">
+      <Container as="main" id="ride-details-page">
         <h1>{name}</h1>
         <time>
           {startDate.toLocaleDateString("en-GB", {
@@ -55,7 +56,7 @@ class RideDetailsPage extends React.Component {
         </time>
         <p>Part of chapter {chapter}</p>
         <p>Full cost: {fullCost}</p>
-      </main>
+      </Container>
     );
   }
 }

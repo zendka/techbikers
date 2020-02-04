@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Form, Input, Button, Message } from "semantic-ui-react";
+import { Form, Input, Button, Message, Container } from "semantic-ui-react";
 
 import ROUTES from "../../../constants/routes";
 import { withFirebase } from "../../Firebase";
@@ -10,10 +10,10 @@ const SignUpPage = memo(() => {
   useEffect(setDocumentTitle("Sign Up"));
 
   return (
-    <main id="signup-page">
+    <Container as="main" id="signup-page">
       <h1>Sign Up</h1>
       <SignUpForm />
-    </main>
+    </Container>
   );
 });
 

@@ -1,4 +1,5 @@
 import React, { memo, useEffect } from "react";
+import { Container } from "semantic-ui-react";
 
 import { setDocumentTitle } from "../../../helpers";
 import YouTubeVideo from "../../YouTubeVideo";
@@ -7,7 +8,7 @@ const CharityPage = memo(() => {
   useEffect(setDocumentTitle("Charity"));
 
   return (
-    <main id="charity-page">
+    <Container as="main" id="charity-page">
       <article>
         <h1>
           Techbikers is proud to support{" "}
@@ -45,7 +46,7 @@ const CharityPage = memo(() => {
           <cite>– Kofi Annan, former United Nations Secretary-General</cite>
         </blockquote>
       </article>
-    </main>
+    </Container>
   );
 });
 

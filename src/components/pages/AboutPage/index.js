@@ -1,4 +1,5 @@
 import React, { memo, useEffect } from "react";
+import { Container } from "semantic-ui-react";
 
 import { setDocumentTitle } from "../../../helpers";
 import YouTubeVideo from "../../YouTubeVideo";
@@ -7,7 +8,7 @@ const AboutPage = memo(() => {
   useEffect(setDocumentTitle("About"));
 
   return (
-    <main id="about-page">
+    <Container as="main" id="about-page">
       <article>
         <h1>About TechBikers</h1>
 
@@ -55,7 +56,7 @@ const AboutPage = memo(() => {
 
         <YouTubeVideo id="W-0JHYkoJUI" />
       </article>
-    </main>
+    </Container>
   );
 });
 

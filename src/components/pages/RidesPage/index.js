@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+import { Card, Container } from "semantic-ui-react";
 
 import "./style.css";
 import ROUTES from "../../../constants/routes";
@@ -55,13 +55,13 @@ class RidesPage extends React.PureComponent {
     }
 
     return (
-      <main id="rides-page">
+      <Container as="main" id="rides-page">
         <h1>Upcoming & Current Rides</h1>
         <RidesList rides={this.upcomingRides} />
 
         <h2>Past Rides</h2>
         <RidesList rides={this.pastRides} />
-      </main>
+      </Container>
     );
   }
 }
