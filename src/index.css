@@ -23,6 +23,11 @@ body,
   flex-grow: 1;
 }
 
+/* Main */
+main {
+  padding-bottom: 2rem;
+}
+
 /* Page title */
 h1:first-child {
   text-align: center;
