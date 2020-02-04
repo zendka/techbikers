@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "semantic-ui-react";
 
@@ -70,41 +70,37 @@ class RidesPage extends React.PureComponent {
   }
 }
 
-class RidesList extends React.Component {
-  render() {
-    return (
-      <Card.Group>
-        {this.props.rides.map(ride => (
-          <Card
-            fluid
-            key={ride.id}
-            as={Link}
-            to={ROUTES.RIDES.replace(/:\w+/, ride.id)}
-          >
-            <Card.Content>
-              <Card.Header>{ride.name}</Card.Header>
-              <Card.Meta>
-                <time>
-                  {ride.startDate.toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short"
-                  })}
-                </time>
-                to{" "}
-                <time>
-                  {ride.endDate.toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric"
-                  })}
-                </time>
-              </Card.Meta>
-            </Card.Content>
-          </Card>
-        ))}
-      </Card.Group>
-    );
-  }
-}
+const RidesList = memo(({ rides }) => (
+  <Card.Group>
+    {rides.map(ride => (
+      <Card
+        fluid
+        key={ride.id}
+        as={Link}
+        to={ROUTES.RIDES.replace(/:\w+/, ride.id)}
+      >
+        <Card.Content>
+          <Card.Header>{ride.name}</Card.Header>
+          <Card.Meta>
+            <time>
+              {ride.startDate.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short"
+              })}
+            </time>
+            to{" "}
+            <time>
+              {ride.endDate.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })}
+            </time>
+          </Card.Meta>
+        </Card.Content>
+      </Card>
+    ))}
+  </Card.Group>
+));
 
 export default withFirebase(RidesPage);

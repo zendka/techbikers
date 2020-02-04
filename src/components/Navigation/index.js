@@ -6,7 +6,7 @@ import "./style.css";
 import ROUTES from "../../constants/routes";
 import SignOutLink from "../SignOutLink";
 
-const Navigation = memo(props => (
+const Navigation = memo(({ user }) => (
   <Menu borderless as="nav" id="main-nav">
     <Menu.Item>
       <Link to={ROUTES.HOME}>
@@ -28,7 +28,7 @@ const Navigation = memo(props => (
     <Menu.Item href="https://medium.com/@techbikers" target="_blank">
       Blog
     </Menu.Item>
-    {props.user ? (
+    {user ? (
       <Menu.Item as={SignOutLink}>Sign Out</Menu.Item>
     ) : (
       <Menu.Item as={Link} to={ROUTES.SIGNIN}>
