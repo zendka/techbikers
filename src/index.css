@@ -6,8 +6,21 @@ body {
   font-size: 1rem;
 }
 
-main {
-  margin: 1rem;
+/* Make footer stick at the bottom. Stretch the <main> block */
+html,
+body,
+#root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+#root > * {
+  flex-shrink: 0;
+}
+#root > main {
+  flex-grow: 1;
 }
 
 h1:first-child {
