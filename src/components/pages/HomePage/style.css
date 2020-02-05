@@ -44,17 +44,6 @@
   line-height: 9rem;
 }
 
-#stats p {
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-#stats b {
-  display: block;
-  font-size: 4rem;
-  line-height: 4rem;
-}
-
 #mailchimp {
   background: rgb(68, 148, 199);
   padding: 3rem;

@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { Form, Container } from "semantic-ui-react";
+import { Form, Container, Statistic } from "semantic-ui-react";
 
 import "./style.css";
 import { setDocumentTitle } from "../../../helpers";
@@ -44,15 +44,20 @@ const Stats = memo(() => (
   <section id="stats">
     <h2>Stats to Date</h2>
 
-    <p>
-      <b>365</b>cyclists
-    </p>
-    <p>
-      <b>£304,000</b> raised since 2012
-    </p>
-    <p>
-      <b>1600km</b> ridden
-    </p>
+    <Statistic.Group widths="1">
+      <Statistic>
+        <Statistic.Value>365</Statistic.Value>
+        <Statistic.Label>cyclists</Statistic.Label>
+      </Statistic>
+      <Statistic>
+        <Statistic.Value>£304,000</Statistic.Value>
+        <Statistic.Label>raised since 2012</Statistic.Label>
+      </Statistic>
+      <Statistic>
+        <Statistic.Value>1600km</Statistic.Value>
+        <Statistic.Label>ridden</Statistic.Label>
+      </Statistic>
+    </Statistic.Group>
   </section>
 ));
 
