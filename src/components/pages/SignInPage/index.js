@@ -1,76 +1,36 @@
-import React, { memo, useEffect } from "react";
-import { withRouter } from "react-router-dom";
-import { Form, Input, Button, Message, Container } from "semantic-ui-react";
+import React, { memo, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
+import "./style.css";
+import FormWithEmailAndPassword from "../../FormWithEmailAndPassword";
 import ROUTES from "../../../constants/routes";
-import { withFirebase } from "../../Firebase";
+import { FirebaseContext } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
 
-const SignInPage = memo(() => {
-  useEffect(setDocumentTitle("Sign In"));
+export default memo(function SignInPage() {
+  const [error, setError] = useState(null);
+  const firebase = useContext(FirebaseContext);
+  const history = useHistory();
+
+  setDocumentTitle("Sign In")();
+
+  const onSubmit = ({ email, password }) => {
+    firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(response => {
+        // @todo set global user context
+        history.push(ROUTES.HOME);
+      })
+      .catch(error => {
+        setError(error.message);
+      });
+  };
 
   return (
     <Container as="main" id="signin-page">
       <h1>Sign In</h1>
-      <SignInForm />
+      <FormWithEmailAndPassword {...{ onSubmit, error }} />
     </Container>
   );
 });
-
-const INITIAL_STATE = { email: "", password: "", error: null };
-
-class SignInFormBase extends React.PureComponent {
-  state = INITIAL_STATE;
-
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.firebase
-      .doSignInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(response => {
-        this.setState(INITIAL_STATE);
-        this.props.history.push(ROUTES.HOME);
-      })
-      .catch(error => {
-        this.setState({ error: error.message });
-      });
-  };
-
-  render() {
-    return (
-      <Form
-        id="signin-form"
-        onSubmit={this.onSubmit}
-        style={{ maxWidth: "250px", margin: "0 auto" }}
-      >
-        <Form.Field>
-          <label>Email</label>
-          <Input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.onChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label>Password</label>
-          <Input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.onChange}
-          />
-        </Form.Field>
-        {this.state.error && <Message negative>{this.state.error}</Message>}
-        <Button type="submit">Sign in</Button>
-      </Form>
-    );
-  }
-}
-
-const SignInForm = withFirebase(withRouter(SignInFormBase));
-
-export default SignInPage;
