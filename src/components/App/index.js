@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ROUTES from "../../constants/routes";
-import { withFirebase } from "../Firebase";
+import { FirebaseContext } from "../Firebase";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import HomePage from "../pages/HomePage";
@@ -15,56 +15,58 @@ import RideDetailsPage from "../pages/RideDetailsPage";
 import PageNotFound from "../pages/PageNotFound";
 import UserContext from "../User";
 
-class App extends React.PureComponent {
-  state = { user: null };
+export default function App() {
+  const firebase = useContext(FirebaseContext);
+  const authUser = useAuthentication(firebase);
 
-  setUser = user => {
-    this.setState({ user });
-  };
+  return (
+    <BrowserRouter>
+      <UserContext.Provider value={authUser}>
+        <Navigation />
+        <Switch>
+          <Route exact path={ROUTES.HOME}>
+            <HomePage />
+          </Route>
+          <Route path={ROUTES.UPCOMING_RIDES}>
+            <RidesPage />
+          </Route>
+          <Route path={ROUTES.ABOUT}>
+            <AboutPage />
+          </Route>
+          <Route path={ROUTES.CHARITY}>
+            <CharityPage />
+          </Route>
+          <Route path={ROUTES.SIGNIN}>
+            <SignInPage />
+          </Route>
 
-  componentDidMount() {
-    this.props.firebase.auth.onAuthStateChanged(user => {
-      this.setState({ user });
-    });
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        <UserContext.Provider value={this.state.user}>
-          <Navigation />
-          <Switch>
-            <Route exact path={ROUTES.HOME}>
-              <HomePage />
-            </Route>
-            <Route path={ROUTES.UPCOMING_RIDES}>
-              <RidesPage />
-            </Route>
-            <Route path={ROUTES.ABOUT}>
-              <AboutPage />
-            </Route>
-            <Route path={ROUTES.CHARITY}>
-              <CharityPage />
-            </Route>
-            <Route path={ROUTES.SIGNIN}>
-              <SignInPage />
-            </Route>
-
-            <Route path={ROUTES.SIGNUP}>
-              <SignUpPage />
-            </Route>
-            <Route path={ROUTES.RIDES}>
-              <RideDetailsPage />
-            </Route>
-            <Route>
-              <PageNotFound />
-            </Route>
-          </Switch>
-          <Footer />
-        </UserContext.Provider>
-      </BrowserRouter>
-    );
-  }
+          <Route path={ROUTES.SIGNUP}>
+            <SignUpPage />
+          </Route>
+          <Route path={ROUTES.RIDES}>
+            <RideDetailsPage />
+          </Route>
+          <Route>
+            <PageNotFound />
+          </Route>
+        </Switch>
+        <Footer />
+      </UserContext.Provider>
+    </BrowserRouter>
+  );
 }
 
-export default withFirebase(App);
+function useAuthentication(firebase) {
+  const [authUser, setAuthUser] = useState(null);
+
+  useEffect(() => {
+    const unlisten = firebase.auth.onAuthStateChanged(authUser => {
+      authUser ? setAuthUser(authUser) : setAuthUser(null);
+    });
+    return () => {
+      unlisten();
+    };
+  }, [firebase]);
+
+  return authUser;
+}
