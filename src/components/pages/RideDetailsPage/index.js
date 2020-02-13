@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
-import { withFirebase } from "../../Firebase";
+import { FirebaseContext } from "../../Firebase";
 import { setDocumentTitle } from "../../../helpers";
 import PageLoader from "../../PageLoader";
 import PageNotFound from "../PageNotFound";
@@ -13,7 +13,7 @@ class RideDetailsPage extends React.Component {
   componentDidMount() {
     const { rideId } = this.props.match.params;
 
-    this.props.firebase
+    this.context
       .fetchRide(rideId)
       .then(ride => {
         this.setState({ loading: false, loadedSuccessfully: true, ride });
@@ -61,4 +61,6 @@ class RideDetailsPage extends React.Component {
   }
 }
 
-export default withRouter(withFirebase(RideDetailsPage));
+RideDetailsPage.contextType = FirebaseContext;
+
+export default withRouter(RideDetailsPage);
