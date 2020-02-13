@@ -1,12 +1,15 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Button, Icon, Container } from "semantic-ui-react";
 
 import "./style.css";
 import ROUTES from "../../constants/routes";
 import SignOutLink from "../SignOutLink";
+import UserContext from "../User";
 
-export default memo(function Navigation({ user }) {
+export default memo(function Navigation() {
+  const user = useContext(UserContext);
+
   return (
     <Menu borderless as="nav" id="main-nav">
       <Container>
