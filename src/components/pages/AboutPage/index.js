@@ -1,11 +1,11 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { Container } from "semantic-ui-react";
 
-import { setDocumentTitle } from "../../../helpers";
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 import YouTubeVideo from "../../YouTubeVideo";
 
 const AboutPage = memo(() => {
-  useEffect(setDocumentTitle("About"));
+  useDocumentTitle("About");
 
   return (
     <Container as="main" id="about-page">

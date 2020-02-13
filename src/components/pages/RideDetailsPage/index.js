@@ -22,11 +22,11 @@ class RideDetailsPage extends React.Component {
         this.setState({ loading: false, loadedSuccessfully: false })
       );
 
-    setDocumentTitle(this.state.ride?.name)();
+    setDocumentTitle(this.state.ride?.name);
   }
 
   componentDidUpdate() {
-    setDocumentTitle(this.state.ride?.name)();
+    setDocumentTitle(this.state.ride?.name);
   }
 
   render() {

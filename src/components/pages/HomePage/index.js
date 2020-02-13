@@ -1,11 +1,11 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { Form, Container, Statistic } from "semantic-ui-react";
 
 import "./style.css";
-import { setDocumentTitle } from "../../../helpers";
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 export default memo(function HomePage() {
-  useEffect(setDocumentTitle());
+  useDocumentTitle();
 
   return (
     <Container as="main" id="home-page">

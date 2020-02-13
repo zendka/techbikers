@@ -6,14 +6,14 @@ import "./style.css";
 import FormWithEmailAndPassword from "../../FormWithEmailAndPassword";
 import ROUTES from "../../../constants/routes";
 import { FirebaseContext } from "../../Firebase";
-import { setDocumentTitle } from "../../../helpers";
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 export default memo(function SignInPage() {
   const [error, setError] = useState(null);
   const firebase = useContext(FirebaseContext);
   const history = useHistory();
 
-  setDocumentTitle("Sign In")();
+  useDocumentTitle("Sign In");
 
   const onSubmit = ({ email, password }) => {
     firebase

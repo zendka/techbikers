@@ -26,11 +26,7 @@ class RidesPage extends React.PureComponent {
         this.setState({ loading: false, loadedSuccessfully: false })
       );
 
-    setDocumentTitle("Rides")();
-  }
-
-  componentDidUpdate() {
-    setDocumentTitle("Rides")();
+    setDocumentTitle("Rides");
   }
 
   updateRides = rides => {
