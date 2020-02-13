@@ -4,7 +4,7 @@ import { Form, Container, Statistic } from "semantic-ui-react";
 import "./style.css";
 import { setDocumentTitle } from "../../../helpers";
 
-const HomePage = memo(() => {
+export default memo(function HomePage() {
   useEffect(setDocumentTitle());
 
   return (
@@ -84,5 +84,3 @@ const MailchimpForm = memo(() => (
     </Form>
   </section>
 ));
-
-export default HomePage;
