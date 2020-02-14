@@ -12,8 +12,6 @@ import PageNotFound from "../PageNotFound";
 class RidesPage extends React.PureComponent {
   state = {
     rides: [],
-    upcomingRides: [],
-    pastRides: [],
     loading: true,
     loadedSuccessfully: null
   };
