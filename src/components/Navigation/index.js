@@ -5,10 +5,10 @@ import { Menu, Button, Icon, Container } from "semantic-ui-react";
 import "./style.css";
 import ROUTES from "../../constants/routes";
 import SignOutLink from "../SignOutLink";
-import UserContext from "../User";
+import AuthUserContext from "../AuthUser";
 
 export default memo(function Navigation() {
-  const user = useContext(UserContext);
+  const authUser = useContext(AuthUserContext);
 
   return (
     <Menu borderless as="nav" id="main-nav">
@@ -38,7 +38,7 @@ export default memo(function Navigation() {
         <Menu.Item href="https://medium.com/@techbikers" target="_blank">
           Blog
         </Menu.Item>
-        {user ? (
+        {authUser ? (
           <Menu.Item as={SignOutLink}>Sign Out</Menu.Item>
         ) : (
           <Menu.Item as={Link} to={ROUTES.SIGNIN}>

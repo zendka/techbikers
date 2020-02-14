@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ROUTES from "../../constants/routes";
-import { FirebaseContext } from "../Firebase";
+import { AuthUserProvider } from "../AuthUser";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import HomePage from "../pages/HomePage";
@@ -13,15 +13,11 @@ import SignInPage from "../pages/SignInPage";
 import RidesPage from "../pages/RidesPage";
 import RideDetailsPage from "../pages/RideDetailsPage";
 import PageNotFound from "../pages/PageNotFound";
-import UserContext from "../User";
 
 export default function App() {
-  const firebase = useContext(FirebaseContext);
-  const authUser = useAuthentication(firebase);
-
   return (
     <BrowserRouter>
-      <UserContext.Provider value={authUser}>
+      <AuthUserProvider>
         <Navigation />
         <Switch>
           <Route exact path={ROUTES.HOME}>
@@ -51,22 +47,7 @@ export default function App() {
           </Route>
         </Switch>
         <Footer />
-      </UserContext.Provider>
+      </AuthUserProvider>
     </BrowserRouter>
   );
-}
-
-function useAuthentication(firebase) {
-  const [authUser, setAuthUser] = useState(null);
-
-  useEffect(() => {
-    const unlisten = firebase.auth.onAuthStateChanged(authUser => {
-      authUser ? setAuthUser(authUser) : setAuthUser(null);
-    });
-    return () => {
-      unlisten();
-    };
-  }, [firebase]);
-
-  return authUser;
 }
