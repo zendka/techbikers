@@ -1,3 +1,4 @@
+import React, { createContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -12,7 +13,7 @@ const config = {
   functionURL: process.env.REACT_APP_FB_functionURL
 };
 
-export default class Firebase {
+class Api {
   constructor() {
     firebase.initializeApp(config);
 
@@ -20,20 +21,24 @@ export default class Firebase {
     this.db = firebase.database();
   }
 
-  doCreateUserWithEmailAndPassword(email, password) {
+  createUser(email, password) {
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  doSignInWithEmailAndPassword(email, password) {
+  signIn(email, password) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
-  doSignOut() {
+  signOut() {
     return this.auth.signOut();
   }
 
-  fetchRides = () =>
-    new Promise((resolve, reject) => {
+  onAuthStateChanged(observer) {
+    return this.auth.onAuthStateChanged(observer);
+  }
+
+  fetchRides() {
+    return new Promise((resolve, reject) => {
       this.db.ref("rides").once("value", snapshot => {
         const rides = Object.values(snapshot.val());
         if (!rides) {
@@ -49,6 +54,7 @@ export default class Firebase {
         resolve(rides);
       });
     });
+  }
 
   fetchRide(rideId) {
     return new Promise((resolve, reject) => {
@@ -67,3 +73,14 @@ export default class Firebase {
     });
   }
 }
+
+const ApiContext = new createContext(null);
+
+function ApiProvider({ children }) {
+  return (
+    <ApiContext.Provider value={new Api()}>{children}</ApiContext.Provider>
+  );
+}
+
+export default ApiContext;
+export { ApiProvider };

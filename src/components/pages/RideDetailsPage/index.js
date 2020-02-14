@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Container, Message } from "semantic-ui-react";
 
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
-import { FirebaseContext } from "../../Firebase";
+import ApiContext from "../../Api";
 import PageLoader from "../../PageLoader";
 import Time from "../../Time/Time";
 
@@ -45,14 +45,14 @@ function useRide(rideId) {
     success: null
   });
 
-  const firebase = useContext(FirebaseContext);
+  const api = useContext(ApiContext);
 
   useEffect(() => {
-    firebase
+    api
       .fetchRide(rideId)
       .then(ride => setState({ hasLoaded: true, success: true, ride }))
       .catch(() => setState({ hasLoaded: true, success: false }));
-  }, [rideId, firebase]);
+  }, [rideId, api]);
 
   return state;
 }

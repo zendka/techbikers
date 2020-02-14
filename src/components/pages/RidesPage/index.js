@@ -5,7 +5,7 @@ import { Card, Container, Message } from "semantic-ui-react";
 import "./style.css";
 import ROUTES from "../../../constants/routes";
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
-import { FirebaseContext } from "../../Firebase";
+import ApiContext from "../../Api";
 import PageLoader from "../../PageLoader";
 import Time from "../../Time/Time";
 
@@ -77,7 +77,7 @@ let RidesList = function({ rides, noRidesMessage }) {
 RidesList = memo(RidesList);
 
 function useRides() {
-  const firebase = useContext(FirebaseContext);
+  const api = useContext(ApiContext);
   const [state, setState] = useState({
     rides: [],
     hasLoaded: false,
@@ -85,11 +85,11 @@ function useRides() {
   });
 
   useEffect(() => {
-    firebase
+    api
       .fetchRides()
       .then(rides => setState({ hasLoaded: true, success: true, rides }))
       .catch(() => setState({ hasLoaded: true, success: false }));
-  }, [firebase]);
+  }, [api]);
 
   return state;
 }
