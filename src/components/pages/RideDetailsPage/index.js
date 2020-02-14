@@ -1,66 +1,58 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import { Container } from "semantic-ui-react";
+import React, { memo, useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { Container, Message } from "semantic-ui-react";
 
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 import { FirebaseContext } from "../../Firebase";
-import { setDocumentTitle } from "../../../helpers";
 import PageLoader from "../../PageLoader";
-import PageNotFound from "../PageNotFound";
+import Time from "../../Time/Time";
 
-class RideDetailsPage extends React.Component {
-  state = { ride: null, loading: true, loadedSuccessfully: null };
+export default function RideDetailsPage() {
+  const { rideId } = useParams();
+  const { ride, hasLoaded, success } = useRide(rideId);
 
-  componentDidMount() {
-    const { rideId } = this.props.match.params;
+  useDocumentTitle(ride?.name);
 
-    this.context
-      .fetchRide(rideId)
-      .then(ride => {
-        this.setState({ loading: false, loadedSuccessfully: true, ride });
-      })
-      .catch(() =>
-        this.setState({ loading: false, loadedSuccessfully: false })
-      );
+  return (
+    <Container as="main" id="ride-details-page">
+      {!hasLoaded && <PageLoader />}
 
-    setDocumentTitle(this.state.ride?.name);
-  }
+      {hasLoaded && !success && (
+        <Message negative>Could not load rides, please try again later</Message>
+      )}
 
-  componentDidUpdate() {
-    setDocumentTitle(this.state.ride?.name);
-  }
-
-  render() {
-    if (this.state.loading) {
-      return <PageLoader />;
-    } else if (!this.state.loadedSuccessfully) {
-      return <PageNotFound />;
-    }
-
-    const { name, startDate, endDate, fullCost, chapter } = this.state.ride;
-    return (
-      <Container as="main" id="ride-details-page">
-        <h1>{name}</h1>
-        <time>
-          {startDate.toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "short"
-          })}
-        </time>{" "}
-        to{" "}
-        <time>
-          {endDate.toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-          })}
-        </time>
-        <p>Part of chapter {chapter}</p>
-        <p>Full cost: {fullCost}</p>
-      </Container>
-    );
-  }
+      {hasLoaded && success && <RideDetails {...ride} />}
+    </Container>
+  );
 }
 
-RideDetailsPage.contextType = FirebaseContext;
+let RideDetails = function({ name, startDate, endDate, chapter, fullCost }) {
+  return (
+    <>
+      <h1>{name}</h1>
+      <Time date={startDate} /> to <Time date={endDate} />
+      <p>Part of chapter {chapter}</p>
+      <p>Full cost: {fullCost}</p>
+    </>
+  );
+};
+RideDetails = memo(RideDetails);
 
-export default withRouter(RideDetailsPage);
+function useRide(rideId) {
+  const [state, setState] = useState({
+    ride: null,
+    hasLoaded: false,
+    success: null
+  });
+
+  const firebase = useContext(FirebaseContext);
+
+  useEffect(() => {
+    firebase
+      .fetchRide(rideId)
+      .then(ride => setState({ hasLoaded: true, success: true, ride }))
+      .catch(() => setState({ hasLoaded: true, success: false }));
+  }, [rideId, firebase]);
+
+  return state;
+}
