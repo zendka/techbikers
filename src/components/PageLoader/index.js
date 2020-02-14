@@ -3,12 +3,10 @@ import { Loader, Segment } from "semantic-ui-react";
 
 import "./style.css";
 
-const PageLoader = memo(() => (
-  <main>
+export default memo(function PageLoader() {
+  return (
     <Segment basic className="page-loader">
       <Loader active>Loading</Loader>
     </Segment>
-  </main>
-));
-
-export default PageLoader;
+  );
+});
