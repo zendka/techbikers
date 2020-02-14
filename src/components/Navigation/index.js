@@ -15,12 +15,7 @@ export default memo(function Navigation() {
       <Container>
         <Menu.Item>
           <Link to={ROUTES.HOME}>
-            <img
-              src="/static/img/logo@2x.png"
-              height="58"
-              width="58"
-              alt="bike"
-            />
+            <Logo />
           </Link>
         </Menu.Item>
         <Menu.Item as={Link} to={ROUTES.HOME}>
@@ -56,3 +51,7 @@ export default memo(function Navigation() {
     </Menu>
   );
 });
+
+const Logo = memo(() => (
+  <img src="/static/img/logo@2x.png" height="58" width="58" alt="bike" />
+));
