@@ -4,7 +4,7 @@ import { Container } from "semantic-ui-react";
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
 import YouTubeVideo from "../../YouTubeVideo";
 
-const CharityPage = memo(() => {
+export default memo(function CharityPage() {
   useDocumentTitle("Charity");
 
   return (
@@ -49,5 +49,3 @@ const CharityPage = memo(() => {
     </Container>
   );
 });
-
-export default CharityPage;

@@ -4,7 +4,7 @@ import { Container } from "semantic-ui-react";
 import "./style.css";
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
-const PageNotFound = memo(() => {
+export default memo(function PageNotFound() {
   useDocumentTitle("Page Not Found");
 
   return (
@@ -13,5 +13,3 @@ const PageNotFound = memo(() => {
     </Container>
   );
 });
-
-export default PageNotFound;

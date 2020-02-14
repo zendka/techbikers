@@ -18,15 +18,15 @@ export default memo(function HomePage() {
 });
 
 // @todo optimise image size! and optimise for @media mobile
-const Hero = memo(() => (
+const Hero = () => (
   <section id="hero">
     <p>
       <b>Drop</b>your laptop & get on your<b>bike</b>
     </p>
   </section>
-));
+);
 
-const Mission = memo(() => (
+const Mission = () => (
   <section id="mission">
     <h2>Our Mission</h2>
 
@@ -38,9 +38,9 @@ const Mission = memo(() => (
       for this fantastic charity.
     </p>
   </section>
-));
+);
 
-const Stats = memo(() => (
+const Stats = () => (
   <section id="stats">
     <h2>Stats to Date</h2>
 
@@ -59,9 +59,9 @@ const Stats = memo(() => (
       </Statistic>
     </Statistic.Group>
   </section>
-));
+);
 
-const MailchimpForm = memo(() => (
+const MailchimpForm = () => (
   <section id="mailchimp">
     <h2>Learn more about our plans for 2020!</h2>
 
@@ -83,4 +83,4 @@ const MailchimpForm = memo(() => (
       </Form.Button>
     </Form>
   </section>
-));
+);
