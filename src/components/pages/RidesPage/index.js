@@ -8,7 +8,7 @@ import useDocumentTitle from "../../../hooks/useDocumentTitle";
 import withErrorMessage from "../../hocs/withErrorMessage";
 import withLoadingIndicator from "../../hocs/withLoadingIndicator";
 import ApiContext from "../../Api";
-import Time from "../../Time/Time";
+import Time from "../../Time";
 
 export default memo(function RidesPage() {
   useDocumentTitle("Rides");
