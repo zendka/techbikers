@@ -1,18 +1,19 @@
 import React, { memo, useState, useEffect, useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Card, Container, Message } from "semantic-ui-react";
+import { Card, Container } from "semantic-ui-react";
 
 import "./style.css";
 import ROUTES from "../../../constants/routes";
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
+import withErrorMessage from "../../hocs/withErrorMessage";
+import withLoadingIndicator from "../../hocs/withLoadingIndicator";
 import ApiContext from "../../Api";
-import PageLoader from "../../PageLoader";
 import Time from "../../Time/Time";
 
 export default memo(function RidesPage() {
   useDocumentTitle("Rides");
 
-  const { rides, hasLoaded, success } = useRides();
+  const { rides, isLoading, error } = useRides();
 
   let upcomingRides = useMemo(() => {
     const now = new Date();
@@ -30,21 +31,9 @@ export default memo(function RidesPage() {
 
   return (
     <Container as="main" id="rides-page">
-      <h1>Upcoming & Current Rides</h1>
-
-      {!hasLoaded && <PageLoader />}
-
-      {hasLoaded && !success && (
-        <Message negative>Could not load rides, please try again later</Message>
-      )}
-
-      {hasLoaded && success && (
-        <>
-          <RidesList rides={upcomingRides} noRidesMessage="Stay tuned" />
-          <h2>Past Rides</h2>
-          <RidesList rides={pastRides} />
-        </>
-      )}
+      <RidesWithIndicators
+        {...{ isLoading, error, upcomingRides, pastRides }}
+      />
     </Container>
   );
 });
@@ -76,19 +65,37 @@ let RidesList = function({ rides, noRidesMessage }) {
 };
 RidesList = memo(RidesList);
 
+let Rides = function({ upcomingRides, pastRides }) {
+  return (
+    <>
+      <h1>Upcoming & Current Rides</h1>
+      <RidesList rides={upcomingRides} noRidesMessage="Stay tuned" />
+      <h2>Past Rides</h2>
+      <RidesList rides={pastRides} />
+    </>
+  );
+};
+
+const RidesWithIndicators = withErrorMessage(withLoadingIndicator(Rides));
+
 function useRides() {
   const api = useContext(ApiContext);
   const [state, setState] = useState({
     rides: [],
-    hasLoaded: false,
-    success: null
+    isLoading: true,
+    error: null
   });
 
   useEffect(() => {
     api
       .fetchRides()
-      .then(rides => setState({ hasLoaded: true, success: true, rides }))
-      .catch(() => setState({ hasLoaded: true, success: false }));
+      .then(rides => setState({ isLoading: false, error: null, rides }))
+      .catch(() =>
+        setState({
+          isLoading: false,
+          error: "Could not load, please try again later"
+        })
+      );
   }, [api]);
 
   return state;

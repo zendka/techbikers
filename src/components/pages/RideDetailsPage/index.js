@@ -1,27 +1,22 @@
 import React, { memo, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Message } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
+import withErrorMessage from "../../hocs/withErrorMessage";
+import withLoadingIndicator from "../../hocs/withLoadingIndicator";
 import ApiContext from "../../Api";
-import PageLoader from "../../PageLoader";
-import Time from "../../Time/Time";
+import Time from "../../Time";
 
 export default function RideDetailsPage() {
   const { rideId } = useParams();
-  const { ride, hasLoaded, success } = useRide(rideId);
+  const { ride, isLoading, error } = useRide(rideId);
 
   useDocumentTitle(ride?.name);
 
   return (
     <Container as="main" id="ride-details-page">
-      {!hasLoaded && <PageLoader />}
-
-      {hasLoaded && !success && (
-        <Message negative>Could not load rides, please try again later</Message>
-      )}
-
-      {hasLoaded && success && <RideDetails {...ride} />}
+      <RideDetailsWithIndicators {...{ isLoading, error, ...ride }} />
     </Container>
   );
 }
@@ -38,11 +33,15 @@ let RideDetails = function({ name, startDate, endDate, chapter, fullCost }) {
 };
 RideDetails = memo(RideDetails);
 
+const RideDetailsWithIndicators = withLoadingIndicator(
+  withErrorMessage(RideDetails)
+);
+
 function useRide(rideId) {
   const [state, setState] = useState({
     ride: null,
-    hasLoaded: false,
-    success: null
+    isLoading: true,
+    error: null
   });
 
   const api = useContext(ApiContext);
@@ -50,8 +49,13 @@ function useRide(rideId) {
   useEffect(() => {
     api
       .fetchRide(rideId)
-      .then(ride => setState({ hasLoaded: true, success: true, ride }))
-      .catch(() => setState({ hasLoaded: true, success: false }));
+      .then(ride => setState({ isLoading: false, error: null, ride }))
+      .catch(() =>
+        setState({
+          isLoading: false,
+          error: "Could not load, please try again later"
+        })
+      );
   }, [rideId, api]);
 
   return state;
