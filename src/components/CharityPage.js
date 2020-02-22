@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { Container } from "semantic-ui-react";
 
-import useDocumentTitle from "../../../hooks/useDocumentTitle";
-import YouTubeVideo from "../../YouTubeVideo";
+import useDocumentTitle from "library/hooks/useDocumentTitle";
+import YouTubeVideo from "library/components/YouTubeVideo";
 
 export default memo(function CharityPage() {
   useDocumentTitle("Charity");

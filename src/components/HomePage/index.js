@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Form, Container, Statistic } from "semantic-ui-react";
 
 import "./style.css";
-import useDocumentTitle from "../../../hooks/useDocumentTitle";
+import useDocumentTitle from "library/hooks/useDocumentTitle";
 
 export default memo(function HomePage() {
   useDocumentTitle();

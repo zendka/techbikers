@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Menu, Button, Icon, Container } from "semantic-ui-react";
 
 import "./style.css";
-import ROUTES from "../../constants/routes";
-import SignOutLink from "../SignOutLink";
-import AuthUserContext from "../AuthUser";
+import ROUTES from "library/constants/routes";
+import SignOutLink from "../Auth/SignOutLink";
+import AuthUserContext from "library/network/Auth";
 
 export default memo(function Navigation() {
   const authUser = useContext(AuthUserContext);

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Form, Input, Button, Message } from "semantic-ui-react";
 
-import useFormInput from "../../hooks/useInputForm";
+import useFormInput from "library/hooks/useInputForm";
 
 export default memo(function FormWithEmailAndPassword(props) {
   const email = useFormInput("");

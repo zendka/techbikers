@@ -1,5 +1,5 @@
 import React from "react";
-import PageLoader from "../PageLoader";
+import PageLoader from "library/components/PageLoader";
 
 export default function(Component) {
   return function withLoadingIndicator({ isLoading, ...props }) {

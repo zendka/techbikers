@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import ApiContext from "../Api";
-import ROUTES from "../../constants/routes";
+import ApiContext from "library/network/API";
+import ROUTES from "library/constants/routes";
 
 export default function SignOutLink({ children, ...props }) {
   const api = useContext(ApiContext);

@@ -2,11 +2,11 @@ import React, { memo, useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
-import useDocumentTitle from "../../../hooks/useDocumentTitle";
-import withErrorMessage from "../../hocs/withErrorMessage";
-import withLoadingIndicator from "../../hocs/withLoadingIndicator";
-import ApiContext from "../../Api";
-import Time from "../../Time";
+import useDocumentTitle from "library/hooks/useDocumentTitle";
+import withErrorMessage from "library/hocs/withErrorMessage";
+import withLoadingIndicator from "library/hocs/withLoadingIndicator";
+import ApiContext from "library/network/API";
+import Time from "library/components/Time";
 
 export default function RideDetailsPage() {
   const { rideId } = useParams();

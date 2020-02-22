@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Card, Container } from "semantic-ui-react";
 
 import "./style.css";
-import ROUTES from "../../../constants/routes";
-import useDocumentTitle from "../../../hooks/useDocumentTitle";
-import withErrorMessage from "../../hocs/withErrorMessage";
-import withLoadingIndicator from "../../hocs/withLoadingIndicator";
-import ApiContext from "../../Api";
-import Time from "../../Time";
+import ROUTES from "library/constants/routes";
+import useDocumentTitle from "library/hooks/useDocumentTitle";
+import withErrorMessage from "library/hocs/withErrorMessage";
+import withLoadingIndicator from "library/hocs/withLoadingIndicator";
+import ApiContext from "library/network/API";
+import Time from "library/components/Time";
 
 export default memo(function RidesPage() {
   useDocumentTitle("Rides");
