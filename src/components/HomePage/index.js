@@ -12,7 +12,7 @@ export default memo(function HomePage() {
       <Hero />
       <Mission />
       <Stats />
-      <MailchimpForm />
+      <SubscriptionForm />
     </Container>
   );
 });
@@ -61,7 +61,7 @@ const Stats = () => (
   </section>
 );
 
-const MailchimpForm = () => (
+const SubscriptionForm = () => (
   <section id="mailchimp">
     <h2>Learn more about our plans for 2020!</h2>
 
