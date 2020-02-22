@@ -24,7 +24,7 @@ export default memo(function FormWithEmailAndPassword(props) {
         <Input type="password" name="password" {...password} />
       </Form.Field>
       {props.error && <Message negative>{props.error}</Message>}
-      <Button type="submit">Sign up</Button>
+      <Button type="submit">{props.text || "Submit"}</Button>
     </Form>
   );
 });

@@ -30,7 +30,7 @@ export default memo(function SignUpPage() {
   return (
     <Container as="main" id="signup-page">
       <h1>Sign Up</h1>
-      <FormWithEmailAndPassword {...{ onSubmit, error }} />
+      <FormWithEmailAndPassword {...{ onSubmit, error, text: "Sign Up" }} />
     </Container>
   );
 });
