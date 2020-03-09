@@ -1,0 +1,11 @@
+#ride-details-page {
+  text-align: center;
+}
+
+#ride-details-page h1 {
+  margin-bottom: 1rem;
+}
+
+#ride-details-page .metadata {
+  font-size: larger;
+}

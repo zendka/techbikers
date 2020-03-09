@@ -2,6 +2,7 @@ import React, { memo, useReducer, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
+import "./style.css";
 import useDocumentTitle from "library/hooks/useDocumentTitle";
 import withErrorMessage from "library/hocs/withErrorMessage";
 import withLoadingIndicator from "library/hocs/withLoadingIndicator";
@@ -25,9 +26,11 @@ let RideDetails = function({ name, startDate, endDate, chapter, fullCost }) {
   return (
     <>
       <h1>{name}</h1>
-      <Time date={startDate} /> to <Time date={endDate} />
-      <p>Part of chapter {chapter}</p>
-      <p>Full cost: {fullCost}</p>
+      <div className="metadata">
+        <Time date={startDate} /> to <Time date={endDate} />
+        <p>Part of chapter {chapter}</p>
+        <p>Full cost: {fullCost}</p>
+      </div>
     </>
   );
 };
