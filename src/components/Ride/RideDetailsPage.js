@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useContext } from "react";
+import React, { memo, useReducer, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
@@ -38,22 +38,33 @@ const RideDetailsWithIndicators = withLoadingIndicator(
 );
 
 function useRide(rideId) {
-  const [state, setState] = useState({
+  const [state, dispatch] = useReducer(reducer, {
     ride: null,
     isLoading: true,
     error: null
   });
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "success":
+        return { isLoading: false, ride: action.load };
+      case "error":
+        return { isLoading: false, error: action.load };
+      default:
+        return state;
+    }
+  }
 
   const api = useContext(ApiContext);
 
   useEffect(() => {
     api
       .fetchRide(rideId)
-      .then(ride => setState({ isLoading: false, error: null, ride }))
+      .then(ride => dispatch({ type: "success", load: ride }))
       .catch(() =>
-        setState({
-          isLoading: false,
-          error: "Could not load, please try again later"
+        dispatch({
+          type: "error",
+          load: "Could not load, please try again later"
         })
       );
   }, [rideId, api]);
