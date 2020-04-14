@@ -4,12 +4,14 @@ import { setRideCache, getRideCache } from "../helpers/cache";
 
 function reducer(state, action) {
   switch (action.type) {
-    case "success":
-      return { isLoading: false, ride: action.load };
-    case "error":
-      return { isLoading: false, error: action.load };
+    case "FETCH_INIT":
+      return { ...state, isLoading: true, error: null };
+    case "FETCH_SUCCESS":
+      return { ...state, ride: action.payload, isLoading: false, error: null };
+    case "FETCH_ERROR":
+      return { ...state, isLoading: false, error: action.payload };
     default:
-      return state;
+      throw new Error();
   }
 }
 
@@ -20,26 +22,36 @@ export default function useRide(rideId) {
   const [state, dispatch] = useReducer(reducer, {
     ride: cachedRide,
     isLoading: cachedRide ? false : true,
-    error: null
+    error: null,
   });
 
   useEffect(() => {
+    let wasCanceled = false;
+
     if (cachedRide) {
       return;
     }
 
+    dispatch({ type: "FETCH_INIT" });
+
     api
       .fetchRide(rideId)
-      .then(ride => {
-        dispatch({ type: "success", load: ride });
+      .then((ride) => {
         setRideCache(rideId, ride);
+        if (!wasCanceled) {
+          dispatch({ type: "FETCH_SUCCESS", payload: ride });
+        }
       })
-      .catch(() =>
-        dispatch({
-          type: "error",
-          load: "Could not load, please try again later"
-        })
-      );
+      .catch(() => {
+        if (!wasCanceled) {
+          dispatch({
+            type: "FETCH_ERROR",
+            payload: "Could not load, please try again later",
+          });
+        }
+      });
+
+    return () => (wasCanceled = true);
   }, [rideId, cachedRide, api]);
 
   return state;
