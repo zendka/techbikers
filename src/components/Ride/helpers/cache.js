@@ -1,3 +1,5 @@
+import { fixDates } from ".";
+
 const EXPIRATION_DURATION = 1000 * 60 * 60; // 1 hour
 
 export function getCache(key) {
@@ -15,8 +17,7 @@ export function getCache(key) {
 
   if (cache.expiryDate && new Date(cache.expiryDate) > new Date()) {
     cache = cache.data;
-    cache.startDate = new Date(cache.startDate);
-    cache.endDate = new Date(cache.endDate);
+    fixDates(cache);
     return cache;
   } else {
     localStorage.removeItem(key);
