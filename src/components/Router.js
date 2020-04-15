@@ -10,7 +10,7 @@ import Charity from "./CharityPage";
 import SignIn from "./Auth/SignInPage";
 import SignUp from "./Auth/SignUpPage";
 import RideList from "./Ride/RideListPage";
-import Ride from "./Ride/RideDetailsPage";
+import Ride from "./Ride/RidePage";
 import PageNotFound from "./PageNotFound";
 
 export default function Root() {
