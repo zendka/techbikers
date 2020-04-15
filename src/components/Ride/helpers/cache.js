@@ -30,10 +30,18 @@ export function setCache(key, data) {
   localStorage.setItem(key, JSON.stringify({ data, expiryDate }));
 }
 
+export function removeCache(key) {
+  localStorage.removeItem(key);
+}
+
 export function getRideCache(rideId) {
   return getCache(`ride_${rideId}`);
 }
 
 export function setRideCache(rideId, ride) {
   setCache(`ride_${rideId}`, ride);
+}
+
+export function removeRideCache(rideId) {
+  removeCache(`ride_${rideId}`);
 }
