@@ -3,6 +3,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
+import { fixDates } from "../../components/Ride/helpers";
+
 const config = {
   apiKey: process.env.REACT_APP_FB_apiKey,
   authDomain: process.env.REACT_APP_FB_authDomain,
@@ -10,7 +12,7 @@ const config = {
   projectId: process.env.REACT_APP_FB_projectId,
   storageBucket: process.env.REACT_APP_FB_storageBucket,
   messagingSenderId: process.env.REACT_APP_FB_messagingSenderId,
-  functionURL: process.env.REACT_APP_FB_functionURL
+  functionURL: process.env.REACT_APP_FB_functionURL,
 };
 
 class Api {
@@ -39,37 +41,43 @@ class Api {
 
   fetchRides() {
     return new Promise((resolve, reject) => {
-      this.db.ref("rides").once("value", snapshot => {
-        const rides = Object.values(snapshot.val());
-        if (!rides) {
+      this.db
+        .ref("rides")
+        .once("value")
+        .then((snapshot) => {
+          if (!snapshot.exists()) {
+            reject();
+            return;
+          }
+
+          const rides = Object.values(snapshot.val());
+          rides.forEach(fixDates);
+          resolve(rides);
+        })
+        .catch(() => {
           reject();
-          return;
-        }
-
-        rides.forEach(ride => {
-          ride.startDate = new Date(ride.startDate);
-          ride.endDate = new Date(ride.endDate);
         });
-
-        resolve(rides);
-      });
     });
   }
 
   fetchRide(rideId) {
     return new Promise((resolve, reject) => {
-      this.db.ref("rides/id_" + rideId).once("value", snapshot => {
-        const ride = snapshot.val();
-        if (!ride) {
+      this.db
+        .ref("rides/id_" + rideId)
+        .once("value")
+        .then((snapshot) => {
+          if (!snapshot.exists()) {
+            reject();
+            return;
+          }
+
+          const ride = snapshot.val();
+          fixDates(ride);
+          resolve(ride);
+        })
+        .catch(() => {
           reject();
-          return;
-        }
-
-        ride.startDate = new Date(ride.startDate);
-        ride.endDate = new Date(ride.endDate);
-
-        resolve(ride);
-      });
+        });
     });
   }
 }
