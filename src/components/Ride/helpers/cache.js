@@ -3,23 +3,13 @@ import { fixDates } from ".";
 const EXPIRATION_DURATION = 1000 * 60 * 60; // 1 hour
 
 export function getCache(key) {
-  let cache = localStorage.getItem(key);
-  if (!cache) {
-    return null;
-  }
-
   try {
-    cache = JSON.parse(cache);
+    const cache = JSON.parse(localStorage.getItem(key));
+    if (!cache.expiryDate || new Date(cache.expiryDate) < new Date()) {
+      throw new Error();
+    }
+    return cache.data;
   } catch {
-    localStorage.removeItem(key);
-    return null;
-  }
-
-  if (cache.expiryDate && new Date(cache.expiryDate) > new Date()) {
-    cache = cache.data;
-    fixDates(cache);
-    return cache;
-  } else {
     localStorage.removeItem(key);
     return null;
   }
@@ -35,13 +25,19 @@ export function removeCache(key) {
 }
 
 export function getRideCache(rideId) {
-  return getCache(`ride_${rideId}`);
+  const ride = getCache(getRideCacheId(rideId));
+  fixDates(ride);
+  return ride;
 }
 
 export function setRideCache(rideId, ride) {
-  setCache(`ride_${rideId}`, ride);
+  setCache(getRideCacheId(rideId), ride);
 }
 
 export function removeRideCache(rideId) {
-  removeCache(`ride_${rideId}`);
+  removeCache(getRideCacheId(rideId));
+}
+
+function getRideCacheId(rideId) {
+  return `ride_${rideId}`;
 }
