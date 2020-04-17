@@ -18,6 +18,7 @@ export default function useRides() {
         setState({
           isLoading: false,
           error: "Could not load, please try again later",
+          rides: [],
         })
       );
   }, [api]);
