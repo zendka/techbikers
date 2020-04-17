@@ -12,7 +12,8 @@ const config = {
   projectId: process.env.REACT_APP_FB_projectId,
   storageBucket: process.env.REACT_APP_FB_storageBucket,
   messagingSenderId: process.env.REACT_APP_FB_messagingSenderId,
-  functionURL: process.env.REACT_APP_FB_functionURL,
+  appId: process.env.REACT_APP_FB_appId,
+  measurementId: process.env.REACT_APP_FB_measurementId,
 };
 
 class Api {
