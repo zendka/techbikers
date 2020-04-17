@@ -1,17 +1,17 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import ROUTES from "library/constants/routes";
-import Navigation from "./Navigation";
-import Footer from "./Footer";
-import Home from "./HomePage";
-import About from "./AboutPage";
-import Charity from "./CharityPage";
-import SignIn from "./Auth/SignInPage";
-import SignUp from "./Auth/SignUpPage";
-import RideList from "./Ride/RideListPage";
-import Ride from "./Ride/RidePage";
-import PageNotFound from "./PageNotFound";
+import ROUTES from 'library/constants/routes';
+import Navigation from './Navigation';
+import Footer from './Footer';
+import Home from './HomePage';
+import About from './AboutPage';
+import Charity from './CharityPage';
+import SignIn from './Auth/SignInPage';
+import SignUp from './Auth/SignUpPage';
+import RideList from './Ride/RideListPage';
+import Ride from './Ride/RidePage';
+import PageNotFound from './PageNotFound';
 
 export default function Root() {
   return (

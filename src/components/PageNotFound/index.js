@@ -1,11 +1,11 @@
-import React, { memo } from "react";
-import { Container } from "semantic-ui-react";
+import React, { memo } from 'react';
+import { Container } from 'semantic-ui-react';
 
-import "./style.css";
-import useDocumentTitle from "library/hooks/useDocumentTitle";
+import './style.css';
+import useDocumentTitle from 'library/hooks/useDocumentTitle';
 
 export default memo(function PageNotFound() {
-  useDocumentTitle("Page Not Found");
+  useDocumentTitle('Page Not Found');
 
   return (
     <Container as="main" id="page-not-found">

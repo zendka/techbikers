@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
-import "./style.css";
+import './style.css';
 
 export default memo(function Footer() {
   return (
@@ -27,8 +27,8 @@ function Contact() {
 
 function SocialLinks() {
   const links = [
-    { name: "Facebook", href: "http://www.facebook.com/techbikers" },
-    { name: "Twitter", href: "http://twitter.com/techbikers" }
+    { name: 'Facebook', href: 'http://www.facebook.com/techbikers' },
+    { name: 'Twitter', href: 'http://twitter.com/techbikers' },
   ];
 
   return (

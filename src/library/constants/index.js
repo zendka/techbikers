@@ -1,3 +1,3 @@
-const SITE_TITLE = "TechBikers";
+const SITE_TITLE = 'TechBikers';
 
 export { SITE_TITLE };

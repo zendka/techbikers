@@ -1,17 +1,17 @@
-import React, { memo, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { Card, Container } from "semantic-ui-react";
+import React, { memo, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { Card, Container } from 'semantic-ui-react';
 
-import "./style.css";
-import useRides from "../hooks/useRides";
-import ROUTES from "library/constants/routes";
-import useDocumentTitle from "library/hooks/useDocumentTitle";
-import withErrorMessage from "library/hocs/withErrorMessage";
-import withLoadingIndicator from "library/hocs/withLoadingIndicator";
-import Time from "library/components/Time";
+import './style.css';
+import useRides from '../hooks/useRides';
+import ROUTES from 'library/constants/routes';
+import useDocumentTitle from 'library/hooks/useDocumentTitle';
+import withErrorMessage from 'library/hocs/withErrorMessage';
+import withLoadingIndicator from 'library/hocs/withLoadingIndicator';
+import Time from 'library/components/Time';
 
 export default memo(function RidesPage() {
-  useDocumentTitle("Rides");
+  useDocumentTitle('Rides');
 
   const { rides, isLoading, error } = useRides();
 

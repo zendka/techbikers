@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
-import Time from "library/components/Time";
+import Time from 'library/components/Time';
 
 export default memo(function RideDetails({
   name,

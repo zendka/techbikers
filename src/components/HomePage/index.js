@@ -1,8 +1,8 @@
-import React, { memo } from "react";
-import { Form, Container, Statistic } from "semantic-ui-react";
+import React, { memo } from 'react';
+import { Form, Container, Statistic } from 'semantic-ui-react';
 
-import "./style.css";
-import useDocumentTitle from "library/hooks/useDocumentTitle";
+import './style.css';
+import useDocumentTitle from 'library/hooks/useDocumentTitle';
 
 export default memo(function HomePage() {
   useDocumentTitle();
@@ -72,7 +72,7 @@ const SubscriptionForm = () => (
     >
       <Form.Input type="email" name="EMAIL" placeholder="Your email address" />
       <input
-        style={{ position: "absolute", left: "-5000px" }}
+        style={{ position: 'absolute', left: '-5000px' }}
         type="text"
         name="b_b99427a37520d53bd953e6e7c_85462469df"
         tabIndex="-1"

@@ -1,4 +1,4 @@
-import { fixDates } from ".";
+import { fixDates } from '.';
 
 const EXPIRATION_DURATION = 1000 * 60 * 60; // 1 hour
 

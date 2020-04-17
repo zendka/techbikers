@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { SITE_TITLE } from "../constants";
+import { SITE_TITLE } from '../constants';
 
 export default function useDocumentTitle(pageName) {
   useEffect(() => {

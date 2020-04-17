@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from 'react';
 
-import ApiContext from "library/network/API";
+import ApiContext from 'library/network/API';
 
 const AuthUserContext = createContext();
 
@@ -20,10 +20,10 @@ function useAuthentication(api) {
 
   useEffect(
     () =>
-      api.onAuthStateChanged(authUser => {
+      api.onAuthStateChanged((authUser) => {
         authUser ? setAuthUser(authUser) : setAuthUser(null);
       }),
-    [api]
+    [api],
   );
 
   return authUser;

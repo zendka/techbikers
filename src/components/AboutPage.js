@@ -1,11 +1,11 @@
-import React, { memo } from "react";
-import { Container } from "semantic-ui-react";
+import React, { memo } from 'react';
+import { Container } from 'semantic-ui-react';
 
-import useDocumentTitle from "library/hooks/useDocumentTitle";
-import YouTubeVideo from "library/components/YouTubeVideo";
+import useDocumentTitle from 'library/hooks/useDocumentTitle';
+import YouTubeVideo from 'library/components/YouTubeVideo';
 
 export default memo(function AboutPage() {
-  useDocumentTitle("About");
+  useDocumentTitle('About');
 
   return (
     <Container as="main" id="about-page">

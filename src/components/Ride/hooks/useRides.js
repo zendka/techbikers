@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from 'react';
 
-import ApiContext from "library/network/API";
+import ApiContext from 'library/network/API';
 
 export default function useRides() {
   const api = useContext(ApiContext);
@@ -17,9 +17,9 @@ export default function useRides() {
       .catch((e) =>
         setState({
           isLoading: false,
-          error: "Could not load, please try again later",
+          error: 'Could not load, please try again later',
           rides: [],
-        })
+        }),
       );
   }, [api]);
 

@@ -1,17 +1,17 @@
-import React, { memo } from "react";
-import { Container } from "semantic-ui-react";
+import React, { memo } from 'react';
+import { Container } from 'semantic-ui-react';
 
-import useDocumentTitle from "library/hooks/useDocumentTitle";
-import YouTubeVideo from "library/components/YouTubeVideo";
+import useDocumentTitle from 'library/hooks/useDocumentTitle';
+import YouTubeVideo from 'library/components/YouTubeVideo';
 
 export default memo(function CharityPage() {
-  useDocumentTitle("Charity");
+  useDocumentTitle('Charity');
 
   return (
     <Container as="main" id="charity-page">
       <article>
         <h1>
-          Techbikers is proud to support{" "}
+          Techbikers is proud to support{' '}
           <a
             href="http://www.roomtoread.org"
             title="Room to Read"

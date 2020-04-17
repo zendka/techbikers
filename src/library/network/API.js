@@ -1,9 +1,9 @@
-import React, { createContext } from "react";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
+import React, { createContext } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
-import { fixDates } from "../../components/Ride/helpers";
+import { fixDates } from '../../components/Ride/helpers';
 
 const config = {
   apiKey: process.env.REACT_APP_FB_apiKey,
@@ -22,7 +22,7 @@ class Api {
 
     this.auth = firebase.auth();
     this.db = firebase.database();
-    this.ridesRef = this.db.ref("rides");
+    this.ridesRef = this.db.ref('rides');
   }
 
   createUser(email, password) {
@@ -42,7 +42,8 @@ class Api {
   }
 
   fetchRides() {
-    return this.ridesRef.once("value").then((snapshot) => {
+    //this.ridesRef;
+    return this.ridesRef.once('value').then((snapshot) => {
       const rides = Object.values(snapshot.val());
       rides.forEach(fixDates);
       return rides;
@@ -51,8 +52,8 @@ class Api {
 
   fetchRide(rideId) {
     return this.ridesRef
-      .child("id_" + rideId)
-      .once("value")
+      .child('id_' + rideId)
+      .once('value')
       .then((snapshot) => {
         if (!snapshot.exists()) {
           throw new Error("The ride doesn't exist");

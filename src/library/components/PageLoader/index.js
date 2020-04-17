@@ -1,7 +1,7 @@
-import React, { memo } from "react";
-import { Loader, Segment } from "semantic-ui-react";
+import React, { memo } from 'react';
+import { Loader, Segment } from 'semantic-ui-react';
 
-import "./style.css";
+import './style.css';
 
 export default memo(function PageLoader() {
   return (
