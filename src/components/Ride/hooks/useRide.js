@@ -43,11 +43,11 @@ export default function useRide(rideId) {
           dispatch({ type: "FETCH_SUCCESS", payload: ride });
         }
       })
-      .catch(() => {
+      .catch((e) => {
         if (!wasCanceled) {
           dispatch({
             type: "FETCH_ERROR",
-            payload: "Could not load, please try again later",
+            payload: e.message || "Could not load, please try again later",
           });
         }
       });

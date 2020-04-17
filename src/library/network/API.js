@@ -21,6 +21,7 @@ class Api {
 
     this.auth = firebase.auth();
     this.db = firebase.database();
+    this.ridesRef = this.db.ref("rides");
   }
 
   createUser(email, password) {
@@ -40,45 +41,26 @@ class Api {
   }
 
   fetchRides() {
-    return new Promise((resolve, reject) => {
-      this.db
-        .ref("rides")
-        .once("value")
-        .then((snapshot) => {
-          if (!snapshot.exists()) {
-            reject();
-            return;
-          }
-
-          const rides = Object.values(snapshot.val());
-          rides.forEach(fixDates);
-          resolve(rides);
-        })
-        .catch(() => {
-          reject();
-        });
+    return this.ridesRef.once("value").then((snapshot) => {
+      const rides = Object.values(snapshot.val());
+      rides.forEach(fixDates);
+      return rides;
     });
   }
 
   fetchRide(rideId) {
-    return new Promise((resolve, reject) => {
-      this.db
-        .ref("rides/id_" + rideId)
-        .once("value")
-        .then((snapshot) => {
-          if (!snapshot.exists()) {
-            reject();
-            return;
-          }
+    return this.ridesRef
+      .child("id_" + rideId)
+      .once("value")
+      .then((snapshot) => {
+        if (!snapshot.exists()) {
+          throw new Error("The ride doesn't exist");
+        }
 
-          const ride = snapshot.val();
-          fixDates(ride);
-          resolve(ride);
-        })
-        .catch(() => {
-          reject();
-        });
-    });
+        const ride = snapshot.val();
+        fixDates(ride);
+        return ride;
+      });
   }
 }
 
